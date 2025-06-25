@@ -5,7 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d8957d8-4641-4c18-82fa-28ebfd689467" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/apps/api/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/config/routes/lexik_jwt.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/.env" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/.env.dev" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/.env.dev" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/config/packages/doctrine.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/config/packages/lexik_jwt_authentication.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/config/packages/lexik_jwt_authentication.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +44,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/setup-docker-db&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/auth-jwt&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/p.antoine/cesizen-monorepo&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
