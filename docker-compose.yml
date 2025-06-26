@@ -24,7 +24,7 @@ services:
     volumes:
       - ./apps/api:/app
     ports:
-      - "8000:8000"
+      - "8080:8000"
     environment:
       DATABASE_URL: "pgsql://postgres:postgres@db:5432/app?serverVersion=16&charset=utf8"
     command: ["php", "-S", "0.0.0.0:8000", "-t", "public"]
