@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d8957d8-4641-4c18-82fa-28ebfd689467" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/apps/api/src/DataFixtures/ORM/ContentFixtures.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/config/bundles.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/api/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/config/packages/doctrine.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/migrations/Version20250625141902.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/symfony.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +38,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/auth-jwt&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/p.antoine/cesizen-monorepo&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,

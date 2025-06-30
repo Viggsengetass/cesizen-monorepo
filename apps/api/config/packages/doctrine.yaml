@@ -15,7 +15,7 @@ doctrine:
             App:
                 is_bundle: false
                 type: attribute
-                dir: 'src/Entity' # ✅ correct dans Docker
+                dir: '%kernel.project_dir%/src/Entity' # ✅ correction ici
                 prefix: 'App\Entity'
                 alias: App
 
