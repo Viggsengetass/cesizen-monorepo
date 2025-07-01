@@ -18,6 +18,10 @@ class DiagnosticFixtures extends Fixture
             $diagnostic->setUpdatedAt(new \DateTimeImmutable());
 
             $manager->persist($diagnostic);
+
+            if ($i === 1) {
+                $this->addReference('diagnostic_1', $diagnostic); // utilisé dans DiagnosticSubmissionFixtures
+            }
         }
 
         $manager->flush();

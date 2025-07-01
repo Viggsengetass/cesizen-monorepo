@@ -23,7 +23,8 @@ class UserFixtures extends Fixture
         $manager->persist($user);
         $manager->flush();
 
-        // Ajoute une référence pour les autres fixtures (comme EmotionEntryFixtures)
+        // Références pour d'autres fixtures
         $this->addReference('user_admin', $user);
+        $this->addReference('user_1', $user); // pour les diagnostics ou autres entités liées à un user
     }
 }

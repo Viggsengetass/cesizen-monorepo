@@ -3,6 +3,11 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
 use App\Dto\DiagnosticAnswer;
 use App\Repository\DiagnosticSubmissionRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -14,6 +19,15 @@ use Symfony\Component\Serializer\Annotation\Type;
     normalizationContext: ['groups' => ['diagnostic_submission:read']],
     denormalizationContext: ['groups' => ['diagnostic_submission:write']],
     security: "is_granted('ROLE_USER')",
+    operations: [
+        new GetCollection(),
+        new Get(),
+        new Post(
+            securityPostDenormalize: "object.getUser() == user"
+        ),
+        new Patch(),
+        new Delete(),
+    ]
 )]
 class DiagnosticSubmission
 {
