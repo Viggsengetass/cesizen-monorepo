@@ -1,0 +1,11 @@
+App\Entity\Content:
+  content_{1..5}:
+    title: <sentence()>
+    slug: <slug()>
+    type: <randomElement(['article', 'video', 'image'])>
+    body: <paragraph(5)>
+    createdAt: <dateTimeBetween('-30 days', '-1 days')>
+    updatedAt: <dateTimeBetween('-1 days', 'now')>
+    coverImage: <imageUrl()>
+    videoUrl: <url()>
+    mediaUrls: "<url()>, <url()>, <url()>"  # ✅ Corrigé
