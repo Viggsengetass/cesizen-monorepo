@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataFixtures;
+namespace App\DataFixtures\ORM;
 
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -22,5 +22,8 @@ class UserFixtures extends Fixture
 
         $manager->persist($user);
         $manager->flush();
+
+        // Ajoute une référence pour les autres fixtures (comme EmotionEntryFixtures)
+        $this->addReference('user_admin', $user);
     }
 }

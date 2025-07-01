@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\DiagnosticRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DiagnosticRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    security: "is_granted('ROLE_USER')",
+    securityPostDenormalize: "object.getUser() === user"
+)]
 class Diagnostic
 {
     #[ORM\Id]
@@ -28,13 +30,18 @@ class Diagnostic
     #[ORM\Column]
     private \DateTimeImmutable $updatedAt;
 
-    public function getId(): ?int { return $id; }
-    public function getTitle(): ?string { return $title; }
+    #[ORM\ManyToOne]
+    private ?User $user = null;
+
+    public function getId(): ?int { return $this->id; }
+    public function getTitle(): ?string { return $this->title; }
     public function setTitle(string $title): static { $this->title = $title; return $this; }
-    public function getDescription(): ?string { return $description; }
+    public function getDescription(): ?string { return $this->description; }
     public function setDescription(string $description): static { $this->description = $description; return $this; }
-    public function getCreatedAt(): \DateTimeImmutable { return $createdAt; }
+    public function getCreatedAt(): \DateTimeImmutable { return $this->createdAt; }
     public function setCreatedAt(\DateTimeImmutable $createdAt): static { $this->createdAt = $createdAt; return $this; }
-    public function getUpdatedAt(): \DateTimeImmutable { return $updatedAt; }
+    public function getUpdatedAt(): \DateTimeImmutable { return $this->updatedAt; }
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static { $this->updatedAt = $updatedAt; return $this; }
+    public function getUser(): ?User { return $this->user; }
+    public function setUser(?User $user): static { $this->user = $user; return $this; }
 }
