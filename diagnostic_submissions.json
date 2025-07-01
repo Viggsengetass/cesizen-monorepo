@@ -1,0 +1,8 @@
+{
+  "diagnostic": "/api/diagnostics/41",
+  "answers": [
+    { "label": "Réponse A", "points": 5, "checked": true },
+    { "label": "Réponse B", "points": 3, "checked": false },
+    { "label": "Réponse C", "points": 2, "checked": true }
+  ]
+}

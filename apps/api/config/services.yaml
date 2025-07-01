@@ -36,3 +36,12 @@ services:
             $security: '@security.helper'
         autoconfigure: false
         public: false
+
+    # ✅ DiagnosticSubmissionDataPersister avec le bon service de base
+    App\DataPersister\DiagnosticSubmissionDataPersister:
+        decorates: 'api_platform.doctrine.orm.state.persist_processor'
+        arguments:
+            $persistProcessor: '@App\DataPersister\DiagnosticSubmissionDataPersister.inner'
+            $security: '@security.helper'
+        autoconfigure: false
+        public: false

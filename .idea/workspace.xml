@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d8957d8-4641-4c18-82fa-28ebfd689467" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/api/src/DataPersister/DiagnosticDataPersister.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/Entity/DiagnosticAnswer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/diagnostic.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/DataPersister/DiagnosticSubmissionDataPersister.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/Dto/DiagnosticAnswer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/Entity/DiagnosticSubmission.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/diagnostic_submissions.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/api/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/Entity/Diagnostic.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/Entity/Diagnostic.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
