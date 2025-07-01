@@ -10,20 +10,38 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    # Persister spécifique pour EmotionEntry (DOIT être le décorateur principal)
-    App\DataPersister\EmotionEntryDataPersister:
+    # 🎯 DiagnosticDataPersister en tout premier
+    App\DataPersister\DiagnosticDataPersister:
         decorates: 'api_platform.doctrine.orm.state.persist_processor'
+        arguments:
+            $persistProcessor: '@App\DataPersister\DiagnosticDataPersister.inner'
+            $security: '@security.helper'
+        autoconfigure: false
+        public: false
+
+    # 🎯 EmotionEntryDataPersister en second
+    App\DataPersister\EmotionEntryDataPersister:
+        decorates: 'App\DataPersister\DiagnosticDataPersister'
         arguments:
             $inner: '@App\DataPersister\EmotionEntryDataPersister.inner'
             $security: '@security.helper'
         autoconfigure: false
         public: false
 
-    # Persister générique
+    # 🎯 UserOwnedDataPersister en dernier (générique)
     App\DataPersister\UserOwnedDataPersister:
         decorates: 'App\DataPersister\EmotionEntryDataPersister'
         arguments:
             $inner: '@App\DataPersister\UserOwnedDataPersister.inner'
+            $security: '@security.helper'
+        autoconfigure: false
+        public: false
+
+    # ✅ DiagnosticSubmissionDataPersister avec le bon service de base
+    App\DataPersister\DiagnosticSubmissionDataPersister:
+        decorates: 'api_platform.doctrine.orm.state.persist_processor'
+        arguments:
+            $persistProcessor: '@App\DataPersister\DiagnosticSubmissionDataPersister.inner'
             $security: '@security.helper'
         autoconfigure: false
         public: false
