@@ -3,45 +3,64 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\ContentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ContentRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    operations: [
+        new Get(),
+        new GetCollection()
+    ],
+    normalizationContext: ['groups' => ['content:read']]
+)]
 class Content
 {
+    #[Groups(['content:read'])]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups(['content:read'])]
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    #[Groups(['content:read'])]
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    #[Groups(['content:read'])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $type = null;
 
+    #[Groups(['content:read'])]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $body = null;
 
+    #[Groups(['content:read'])]
     #[ORM\Column]
     private ?\DateTimeInterface $createdAt = null;
 
+    #[Groups(['content:read'])]
     #[ORM\Column(nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
 
+    #[Groups(['content:read'])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $coverImage = null;
 
+    #[Groups(['content:read'])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $videoUrl = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $mediaUrls = null;
+    #[Groups(['content:read'])]
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    private ?array $mediaUrls = null;
 
     public function getId(): ?int
     {
@@ -56,7 +75,6 @@ class Content
     public function setTitle(string $title): static
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -68,7 +86,6 @@ class Content
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
-
         return $this;
     }
 
@@ -80,7 +97,6 @@ class Content
     public function setType(?string $type): static
     {
         $this->type = $type;
-
         return $this;
     }
 
@@ -92,7 +108,6 @@ class Content
     public function setBody(string $body): static
     {
         $this->body = $body;
-
         return $this;
     }
 
@@ -104,7 +119,6 @@ class Content
     public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -116,7 +130,6 @@ class Content
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
 
@@ -128,7 +141,6 @@ class Content
     public function setCoverImage(?string $coverImage): static
     {
         $this->coverImage = $coverImage;
-
         return $this;
     }
 
@@ -140,19 +152,17 @@ class Content
     public function setVideoUrl(?string $videoUrl): static
     {
         $this->videoUrl = $videoUrl;
-
         return $this;
     }
 
-    public function getMediaUrls(): ?string
+    public function getMediaUrls(): ?array
     {
         return $this->mediaUrls;
     }
 
-    public function setMediaUrls(?string $mediaUrls): static
+    public function setMediaUrls(?array $mediaUrls): static
     {
         $this->mediaUrls = $mediaUrls;
-
         return $this;
     }
 }
