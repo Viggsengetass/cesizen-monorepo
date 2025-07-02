@@ -32,7 +32,7 @@ security:
 
     access_control:
         - { path: ^/api/login_check, roles: PUBLIC_ACCESS }
-        - { path: ^/api, roles: PUBLIC_ACCESS, methods: [GET] }
+        - { path: ^/api/users$, roles: PUBLIC_ACCESS, methods: [POST] } # 🔓 autorise l'inscription
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
 
     enable_authenticator_manager: true
