@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Heart, Wind, BookText } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { IconWrapper } from "@/components/ui/IconWrapper";
 
 export default function IndexContentPage() {
     return (
@@ -30,15 +33,11 @@ export default function IndexContentPage() {
             </p>
 
             <div className="flex gap-4 flex-wrap justify-center mb-16">
-                <Link href="/login" passHref>
-                    <button className="btn-primary" aria-label="Se connecter">
-                        Se connecter
-                    </button>
+                <Link href="/login">
+                    <Button variant="primary">Se connecter</Button>
                 </Link>
-                <Link href="/diagnostic" passHref>
-                    <button className="btn-outline" aria-label="Découvrir CESIZen">
-                        Découvrir CESIZen
-                    </button>
+                <Link href="/diagnostic">
+                    <Button variant="outline">Découvrir CESIZen</Button>
                 </Link>
             </div>
 
@@ -46,27 +45,33 @@ export default function IndexContentPage() {
             <section className="w-full max-w-6xl px-4 mb-24">
                 <h2 className="text-2xl font-semibold mb-6">Fonctionnalités principales</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="card text-center">
-                        <Heart className="mx-auto text-[var(--cesizen-green)]" size={40} />
+                    <Card className="text-center">
+                        <IconWrapper>
+                            <Heart className="mx-auto" size={40} />
+                        </IconWrapper>
                         <h3 className="text-xl font-semibold mt-4 mb-2">Suivi d’humeur</h3>
                         <p className="text-base leading-relaxed">
                             Enregistrez vos émotions et suivez votre évolution pour mieux comprendre votre bien-être.
                         </p>
-                    </div>
-                    <div className="card text-center">
-                        <Wind className="mx-auto text-[var(--cesizen-green)]" size={40} />
+                    </Card>
+                    <Card className="text-center">
+                        <IconWrapper>
+                            <Wind className="mx-auto" size={40} />
+                        </IconWrapper>
                         <h3 className="text-xl font-semibold mt-4 mb-2">Respiration guidée</h3>
                         <p className="text-base leading-relaxed">
                             Des exercices pour vous détendre, respirer profondément et réduire votre stress.
                         </p>
-                    </div>
-                    <div className="card text-center">
-                        <BookText className="mx-auto text-[var(--cesizen-green)]" size={40} />
+                    </Card>
+                    <Card className="text-center">
+                        <IconWrapper>
+                            <BookText className="mx-auto" size={40} />
+                        </IconWrapper>
                         <h3 className="text-xl font-semibold mt-4 mb-2">Fiches informatives</h3>
                         <p className="text-base leading-relaxed">
                             Accédez à des contenus sur la santé mentale, le stress, le sommeil et bien plus encore.
                         </p>
-                    </div>
+                    </Card>
                 </div>
             </section>
 
