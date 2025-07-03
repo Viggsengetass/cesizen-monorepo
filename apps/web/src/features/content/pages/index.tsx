@@ -1,30 +1,49 @@
-// ✅ index.tsx
 "use client";
 
-import { useEffect, useState } from "react";
-import { fetchProtectedContent } from "@/features/content/api/contentApi";
-import { Content } from "@/features/content/types/Content";
-import ContentCard from "@/features/content/components/ContentCard";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function IndexContentPage() {
-    const [contents, setContents] = useState<Content[]>([]);
-
-    useEffect(() => {
-        fetchProtectedContent()
-            .then(setContents)
-            .catch(console.error);
-    }, []);
-
     return (
-        <div className="p-4">
-            <h1 className="text-4xl font-bold text-red-500">Test Tailwind</h1>
+        <motion.main
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="min-h-screen bg-cloud flex flex-col items-center justify-center px-6 text-center"
+        >
+            <motion.h1
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-4xl md:text-5xl font-bold text-graphite mb-6"
+            >
+                Bienvenue sur{" "}
+                <span className="text-sage">CESIZen</span>
+            </motion.h1>
 
-            <h1 className="text-xl font-bold mb-4">Fiches informatives</h1>
-            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                {contents.map((content) => (
-                    <ContentCard key={content.id} content={content} />
-                ))}
-            </div>
-        </div>
+            <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-base md:text-lg text-graphite max-w-xl mb-8"
+            >
+                L’application de bien-être dédiée aux étudiants et apprenants du CESI.<br />
+                Respirez, suivez votre humeur, faites un diagnostic émotionnel, et accédez à des exercices pour vous recentrer.
+            </motion.p>
+
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="flex flex-col sm:flex-row gap-4"
+            >
+                <Link href="/login" className="btn-primary px-6 py-2 text-sm sm:text-base shadow-md hover:scale-105 transition-transform">
+                    Se connecter
+                </Link>
+                <Link href="/diagnostic" className="btn-outline px-6 py-2 text-sm sm:text-base hover:scale-105 transition-transform">
+                    Découvrir
+                </Link>
+            </motion.div>
+        </motion.main>
     );
 }
