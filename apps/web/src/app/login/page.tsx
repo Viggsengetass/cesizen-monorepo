@@ -1,77 +1,33 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useAuth } from "../../context/AuthContext";
+import LoginForm from "@/features/auth/login-form";
+import { motion } from "framer-motion";
 
 export default function LoginPage() {
-    const router = useRouter();
-    const { login } = useAuth();
-
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState<string | null>(null);
-
-    async function handleSubmit(e: React.FormEvent) {
-        e.preventDefault();
-        setError(null);
-
-        try {
-            const res = await fetch("http://localhost:8080/api/login_check", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
-            });
-
-            if (!res.ok) {
-                setError("Identifiants incorrects");
-                return;
-            }
-
-            const data = await res.json();
-            login(data.token);
-            router.push("/"); // rediriger vers home après connexion réussie
-        } catch {
-            setError("Erreur réseau");
-        }
-    }
-
     return (
-        <div className="max-w-md mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Connexion</h1>
+        <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#F6F9FC]">
+            {/* Dégradé pastel en fond */}
+            <div className="absolute inset-0 bg-gradient-radial opacity-30 pointer-events-none" />
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="input input-bordered w-full"
-                        required
-                    />
-                </div>
+            {/* Bulles décoratives animées */}
+            <div className="absolute w-full h-full z-0 pointer-events-none overflow-hidden">
+                <div className="bubble w-40 h-40 top-10 left-10"></div>
+                <div className="bubble w-32 h-32 bottom-20 right-20" style={{ animationDelay: "0.2s" }}></div>
+                <div className="bubble w-24 h-24 top-1/2 left-1/3" style={{ animationDelay: "0.4s" }}></div>
+            </div>
 
-                <div>
-                    <label>Mot de passe</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="input input-bordered w-full"
-                        required
-                    />
-                </div>
-
-                {error && <p className="text-red-600">{error}</p>}
-
-                <button
-                    type="submit"
-                    className="btn btn-primary w-full"
-                >
-                    Se connecter
-                </button>
-            </form>
+            {/* Formulaire animé */}
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md z-10"
+            >
+                <h1 className="text-3xl font-bold text-center mb-6 text-[#2E2E2E]">
+                    Connexion
+                </h1>
+                <LoginForm />
+            </motion.div>
         </div>
     );
 }

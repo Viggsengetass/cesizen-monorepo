@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d8957d8-4641-4c18-82fa-28ebfd689467" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/web/src/components/ui/Button.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/web/src/components/ui/Card.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/web/src/components/ui/IconWrapper.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/web/src/components/ui/Input.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/web/src/components/ui/Label.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/web/src/lib/utils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/web/src/app/register/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/web/src/features/auth/register-form.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/src/features/content/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/features/content/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/src/app/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/app/login/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/src/features/auth/login-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/features/auth/login-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/src/styles/cesizen-theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/styles/cesizen-theme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

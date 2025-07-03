@@ -22,21 +22,21 @@
     body {
         background-color: var(--cesizen-cloud);
         color: var(--cesizen-graphite);
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Inter', sans-serif;
     }
 }
 
 @layer components {
     .btn-primary {
-        @apply bg-[var(--cesizen-green)] text-white font-semibold py-2 px-4 rounded;
+        @apply bg-[var(--cesizen-green)] text-white font-semibold py-2 px-4 rounded-2xl transition hover:bg-[#92c6a5];
     }
 
-    .btn-secondary {
-        @apply bg-[var(--cesizen-skyblue)] text-gray-900 font-medium py-2 px-4 rounded;
+    .btn-outline {
+        @apply border border-[var(--cesizen-green)] text-[var(--cesizen-graphite)] rounded-2xl px-4 py-2 hover:bg-[var(--cesizen-green)]/10;
     }
 
     .card {
-        @apply bg-white rounded-2xl shadow-md p-4;
+        @apply bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition;
     }
 }
 
@@ -49,3 +49,30 @@
         background-color: var(--cesizen-cloud);
     }
 }
+
+/* 🎨 Arrière-plan radial pastel */
+.bg-gradient-radial {
+    background: radial-gradient(circle at top left, var(--cesizen-green) 0%, var(--cesizen-lavender) 50%, transparent 90%);
+}
+
+/* 🌬️ Animation douce des bulles */
+@keyframes float {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1);
+    }
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+}
+
+/* 💭 Bulles décoratives animées */
+.bubble {
+    @apply absolute rounded-full opacity-20 blur-3xl;
+    background-color: var(--cesizen-green);
+    animation: float 6s ease-in-out infinite;
+}
+
+

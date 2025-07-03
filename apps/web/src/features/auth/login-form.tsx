@@ -2,15 +2,25 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
+import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
+import { Button } from "@/components/ui/Button";
+import { Alert } from "@/components/ui/Alert";
 
 export default function LoginForm(): JSX.Element {
+    const router = useRouter();
+    const { login } = useAuth();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const router = useRouter();
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
+        setError(null);
+        setLoading(true);
 
         try {
             const res = await fetch("http://localhost:8080/api/login_check", {
@@ -21,43 +31,52 @@ export default function LoginForm(): JSX.Element {
 
             if (!res.ok) {
                 setError("Identifiants incorrects.");
+                setLoading(false);
                 return;
             }
 
             const data = await res.json();
-            localStorage.setItem("token", data.token);
-
-            router.push("/");
+            login(data.token); // Stocke le token dans AuthContext
+            router.push("/"); // Redirection vers la home
         } catch (err) {
-            setError("Erreur lors de la connexion.");
+            setError("Erreur réseau, veuillez réessayer.");
             console.error(err);
+        } finally {
+            setLoading(false);
         }
-    };
+    }
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
+            {error && <Alert variant="error">{error}</Alert>}
+
             <div>
-                <label className="block font-medium mb-1">Email</label>
-                <input
+                <Label htmlFor="email">Email</Label>
+                <Input
+                    id="email"
                     type="email"
-                    className="border p-2 rounded w-full"
+                    placeholder="Votre email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    required
                 />
             </div>
+
             <div>
-                <label className="block font-medium mb-1">Mot de passe</label>
-                <input
+                <Label htmlFor="password">Mot de passe</Label>
+                <Input
+                    id="password"
                     type="password"
-                    className="border p-2 rounded w-full"
+                    placeholder="Votre mot de passe"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                 />
             </div>
-            {error && <p className="text-red-500">{error}</p>}
-            <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
-                Se connecter
-            </button>
+
+            <Button type="submit" disabled={loading} className="w-full">
+                {loading ? "Connexion..." : "Se connecter"}
+            </Button>
         </form>
     );
 }

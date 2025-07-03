@@ -20,6 +20,10 @@ module.exports = {
         graphite: "#2E2E2E",
         softpink: "#FADADD",
       },
+      animationDelay: {
+        200: '0.2s',
+        400: '0.4s',
+      },
     },
   },
   plugins: [],
