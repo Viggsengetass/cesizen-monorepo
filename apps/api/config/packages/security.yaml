@@ -32,7 +32,8 @@ security:
 
     access_control:
         - { path: ^/api/login_check, roles: PUBLIC_ACCESS }
-        - { path: ^/api/users$, roles: PUBLIC_ACCESS, methods: [POST] } # 🔓 autorise l'inscription
+        - { path: ^/api/users$, roles: PUBLIC_ACCESS, methods: [POST] }
+        - { path: ^/api/contents, roles: PUBLIC_ACCESS } # ✅ accès sans JWT
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
 
     enable_authenticator_manager: true
