@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d8957d8-4641-4c18-82fa-28ebfd689467" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/web/src/features/content/api/login_check" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/web/src/features/content/components/ContentCard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/web/src/features/content/pages/content/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/web/src/features/content/pages/protected.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/web/src/features/content/types/Content.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/Entity/Content.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/Entity/Content.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/app/contents/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/app/content/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/components/ContentCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/app/content/protected/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/lib/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/features/content/api/contentApi.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README-dev.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
