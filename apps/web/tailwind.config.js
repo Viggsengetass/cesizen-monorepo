@@ -13,12 +13,13 @@ module.exports = {
         h2: "24px",
       },
       colors: {
-        sage: "#A8D5BA",
-        skyblue: "#A3D2CA",
-        lavender: "#D5CFE1",
-        cloud: "#F6F9FC",
-        graphite: "#2E2E2E",
-        softpink: "#FADADD",
+        sage: "#A8D5BA",            // Vert Sauge
+        skyblue: "#A3D2CA",         // Bleu Ciel
+        lavender: "#D5CFE1",        // Lavande Douce
+        cloud: "#F6F9FC",           // Gris Nuage
+        graphite: "#2E2E2E",        // Gris Graphite
+        softpink: "#FADADD",        // Rose Pâle
+        white: "#FFFFFF",
       },
       animationDelay: {
         200: '0.2s',
@@ -27,4 +28,4 @@ module.exports = {
     },
   },
   plugins: [],
-};
+}

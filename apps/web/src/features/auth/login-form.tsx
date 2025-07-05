@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
@@ -16,6 +17,23 @@ export default function LoginForm(): JSX.Element {
     const [password, setPassword] = useState("");
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
+
+    function decodeJwt(token: string): any | null {
+        try {
+            const base64Url = token.split(".")[1];
+            const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+            const jsonPayload = decodeURIComponent(
+                atob(base64)
+                    .split("")
+                    .map((c) => `%${("00" + c.charCodeAt(0).toString(16)).slice(-2)}`)
+                    .join("")
+            );
+            return JSON.parse(jsonPayload);
+        } catch (e) {
+            console.error("Erreur de décodage JWT :", e);
+            return null;
+        }
+    }
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -35,9 +53,19 @@ export default function LoginForm(): JSX.Element {
                 return;
             }
 
-            const data = await res.json();
-            login(data.token); // Stocke le token dans AuthContext
-            router.push("/"); // Redirection vers la home
+            const { token } = await res.json();
+            login(token);
+
+            const payload = decodeJwt(token);
+            const roles: string[] = payload?.roles ?? [];
+
+            if (roles.includes("ROLE_ADMIN")) {
+                router.push("/admin");
+            } else if (roles.includes("ROLE_USER")) {
+                router.push("/dashboard");
+            } else {
+                router.push("/");
+            }
         } catch (err) {
             setError("Erreur réseau, veuillez réessayer.");
             console.error(err);
@@ -72,6 +100,12 @@ export default function LoginForm(): JSX.Element {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
+            </div>
+
+            <div className="text-right">
+                <Link href="/forgot-password" className="text-sm text-[#A3D2CA] hover:underline">
+                    Mot de passe oublié ?
+                </Link>
             </div>
 
             <Button type="submit" disabled={loading} className="w-full">
