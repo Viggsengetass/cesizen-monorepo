@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/Label";
 import { Button } from "@/components/ui/Button";
 import { Alert } from "@/components/ui/Alert";
 
-export default function LoginForm(): JSX.Element {
+export default function LoginForm(): Element {
     const router = useRouter();
     const { login } = useAuth();
 
@@ -17,23 +17,6 @@ export default function LoginForm(): JSX.Element {
     const [password, setPassword] = useState("");
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
-
-    function decodeJwt(token: string): any | null {
-        try {
-            const base64Url = token.split(".")[1];
-            const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-            const jsonPayload = decodeURIComponent(
-                atob(base64)
-                    .split("")
-                    .map((c) => `%${("00" + c.charCodeAt(0).toString(16)).slice(-2)}`)
-                    .join("")
-            );
-            return JSON.parse(jsonPayload);
-        } catch (e) {
-            console.error("Erreur de décodage JWT :", e);
-            return null;
-        }
-    }
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -44,7 +27,7 @@ export default function LoginForm(): JSX.Element {
             const res = await fetch("http://localhost:8080/api/login_check", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ username: email, password }),
             });
 
             if (!res.ok) {
@@ -56,15 +39,14 @@ export default function LoginForm(): JSX.Element {
             const { token } = await res.json();
             login(token);
 
-            const payload = decodeJwt(token);
+            // Redirection selon le rôle est gérée via le contexte
+            const payload: any = JSON.parse(atob(token.split(".")[1]));
             const roles: string[] = payload?.roles ?? [];
 
             if (roles.includes("ROLE_ADMIN")) {
                 router.push("/admin");
-            } else if (roles.includes("ROLE_USER")) {
-                router.push("/dashboard");
             } else {
-                router.push("/");
+                router.push("/dashboard");
             }
         } catch (err) {
             setError("Erreur réseau, veuillez réessayer.");

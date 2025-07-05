@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css"; // ✅ chemin relatif corrigé
-
+import "./globals.css";
 import { AuthProvider } from "../context/AuthContext";
 
 const geistSans = Geist({
@@ -19,11 +18,7 @@ export const metadata: Metadata = {
     description: "Application de bien-être pour CESI",
 };
 
-export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
-    children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="fr" className={`${geistSans.variable} ${geistMono.variable}`}>
         <body className="antialiased bg-cloud text-graphite">
