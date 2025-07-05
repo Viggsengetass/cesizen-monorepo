@@ -5,6 +5,7 @@
 @layer base {
     :root {
         --cesizen-green: #A8D5BA;
+        --cesizen-green-hover: #92c6a5;
         --cesizen-skyblue: #A3D2CA;
         --cesizen-lavender: #D5CFE1;
         --cesizen-cloud: #F6F9FC;
@@ -28,15 +29,40 @@
 
 @layer components {
     .btn-primary {
-        @apply bg-[var(--cesizen-green)] text-white font-semibold py-2 px-4 rounded-2xl transition hover:bg-[#92c6a5];
+        background-color: var(--cesizen-green);
+        color: white;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: var(--cesizen-green-hover);
     }
 
     .btn-outline {
-        @apply border border-[var(--cesizen-green)] text-[var(--cesizen-graphite)] rounded-2xl px-4 py-2 hover:bg-[var(--cesizen-green)]/10;
+        border: 1px solid var(--cesizen-green);
+        color: var(--cesizen-graphite);
+        border-radius: 1rem;
+        padding: 0.5rem 1rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-outline:hover {
+        background-color: rgba(168, 213, 186, 0.1); /* var(--cesizen-green)/10 équivalent */
     }
 
     .card {
-        @apply bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition;
+        background-color: white;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 }
 
@@ -70,9 +96,10 @@
 
 /* 💭 Bulles décoratives animées */
 .bubble {
-    @apply absolute rounded-full opacity-20 blur-3xl;
+    position: absolute;
+    border-radius: 9999px;
+    opacity: 0.2;
+    filter: blur(3rem);
     background-color: var(--cesizen-green);
     animation: float 6s ease-in-out infinite;
 }
-
-

@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/Label";
 import { Button } from "@/components/ui/Button";
 import { Alert } from "@/components/ui/Alert";
 
-export default function LoginForm(): Element {
+export default function LoginForm() {
     const router = useRouter();
     const { login } = useAuth();
 
@@ -27,7 +27,7 @@ export default function LoginForm(): Element {
             const res = await fetch("http://localhost:8080/api/login_check", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username: email, password }),
+                body: JSON.stringify({ email, password }), // ✅ ICI
             });
 
             if (!res.ok) {
@@ -39,7 +39,6 @@ export default function LoginForm(): Element {
             const { token } = await res.json();
             login(token);
 
-            // Redirection selon le rôle est gérée via le contexte
             const payload: any = JSON.parse(atob(token.split(".")[1]));
             const roles: string[] = payload?.roles ?? [];
 
