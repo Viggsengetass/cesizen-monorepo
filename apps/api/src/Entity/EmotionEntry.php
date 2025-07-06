@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['emotion:read']],
     denormalizationContext: ['groups' => ['emotion:write']],
     security: "is_granted('ROLE_USER')",
-    securityPostDenormalize: "object.getUser() === null or object.getUser() === user"
+    securityPostDenormalize: "object.getUser() === null or (object.getUser() !== null and object.getUser() === user)"
 )]
 class EmotionEntry
 {
@@ -51,8 +51,6 @@ class EmotionEntry
     {
         $this->createdAt = new \DateTimeImmutable();
     }
-
-    // Getters / Setters
 
     public function getId(): ?int { return $this->id; }
 

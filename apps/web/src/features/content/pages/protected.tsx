@@ -1,36 +1,29 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { fetchProtectedContent } from '../api/contentApi';
+// apps/web/src/features/content/pages/protected.tsx
+import { useEffect, useState } from "react";
+import { fetchContents } from "../api/contentApi";
+import { useAuth } from "@/context/AuthContext";
 
 export default function ProtectedContentPage() {
-    const [data, setData] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
+    const { token } = useAuth();
+    const [contents, setContents] = useState<any[]>([]);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetchProtectedContent()
-            .then((res) => {
-                setData(res['hydra:member'] || []);
-                setLoading(false);
-            })
-            .catch((err) => {
-                setError('Erreur lors du chargement des données');
-                setLoading(false);
-                console.error(err);
-            });
-    }, []);
+        if (!token) return;
+        fetchContents(token)
+            .then((data) => setContents(data["hydra:member"] || []))
+            .catch((err) => setError(err.message));
+    }, [token]);
 
     return (
-        <div className="p-4">
-            <h1 className="text-xl font-bold mb-4">Contenus protégés</h1>
-
-            {loading && <p>Chargement...</p>}
-            {error && <p className="text-red-500">{error}</p>}
-            <ul className="space-y-2">
-                {data.map((item, index) => (
-                    <li key={index} className="p-2 border rounded">
-                        {JSON.stringify(item)}
+        <div className="p-6">
+            <h1 className="text-2xl font-bold mb-4">Contenus protégés</h1>
+            {error && <p className="text-red-500">Erreur : {error}</p>}
+            <ul className="space-y-4">
+                {contents.map((content) => (
+                    <li key={content.id} className="card">
+                        <h2 className="text-xl font-semibold">{content.title}</h2>
+                        <p>{content.body}</p>
                     </li>
                 ))}
             </ul>

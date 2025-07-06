@@ -3,43 +3,77 @@
 namespace App\DataFixtures\ORM;
 
 use App\Entity\Content;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Faker\Factory;
 
-class ContentFixtures extends Fixture
+class ContentFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create('fr_FR');
+        /** @var User $user */
+        $user = $this->getReference('user_1', User::class);
 
-        for ($i = 0; $i < 10; $i++) {
-            $createdAt = \DateTimeImmutable::createFromMutable(
-                $faker->dateTimeBetween('-30 days', '-2 days')
-            );
+        $contents = [
+            [
+                'title' => 'Respiration profonde : méthode simple pour se détendre',
+                'type' => 'article',
+                'body' => 'Découvrez comment la respiration abdominale peut aider à réduire le stress en quelques minutes par jour.',
+                'coverImage' => 'https://source.unsplash.com/800x400/?meditation,relax',
+                'videoUrl' => null,
+            ],
+            [
+                'title' => '5 postures de yoga contre l’anxiété',
+                'type' => 'article',
+                'body' => 'Le yoga est un allié puissant contre l’anxiété. Voici cinq postures à intégrer dans votre routine quotidienne.',
+                'coverImage' => 'https://source.unsplash.com/800x400/?yoga,calm',
+                'videoUrl' => null,
+            ],
+            [
+                'title' => 'Visualisation positive guidée',
+                'type' => 'video',
+                'body' => 'Cette vidéo vous guide à travers un exercice de visualisation positive pour renforcer la confiance en soi.',
+                'coverImage' => 'https://source.unsplash.com/800x400/?nature,peaceful',
+                'videoUrl' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+            ],
+            [
+                'title' => 'Routine matinale apaisante (infographie)',
+                'type' => 'image',
+                'body' => 'Suivez cette infographie pour commencer chaque journée avec calme et concentration.',
+                'coverImage' => 'https://source.unsplash.com/800x400/?sunrise,morning',
+                'videoUrl' => null,
+            ],
+        ];
 
-            $updatedAt = \DateTimeImmutable::createFromMutable(
-                $faker->dateTimeBetween('-1 days', 'now')
-            );
-
+        foreach ($contents as $entry) {
             $content = new Content();
-            $content->setTitle($faker->sentence())
-                ->setSlug($faker->slug())
-                ->setType($faker->randomElement(['article', 'video', 'image']))
-                ->setBody($faker->paragraph(5))
-                ->setCreatedAt($createdAt)
-                ->setUpdatedAt($updatedAt)
-                ->setCoverImage($faker->imageUrl())
-                ->setVideoUrl($faker->url())
-                ->setMediaUrls([
-                    $faker->url(),
-                    $faker->url(),
-                    $faker->url()
-                ]);
+            $content->setTitle($entry['title'])
+                ->setSlug($this->slugify($entry['title']))
+                ->setType($entry['type'])
+                ->setBody($entry['body'])
+                ->setCreatedAt(new \DateTimeImmutable('-5 days'))
+                ->setUpdatedAt(new \DateTimeImmutable('-1 days'))
+                ->setCoverImage($entry['coverImage'])
+                ->setVideoUrl($entry['videoUrl'])
+                ->setMediaUrls([$entry['coverImage']])
+                ->setUser($user);
 
             $manager->persist($content);
         }
 
         $manager->flush();
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            \App\DataFixtures\ORM\UserFixtures::class,
+        ];
+    }
+
+    private function slugify(string $string): string
+    {
+        return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string), '-'));
     }
 }

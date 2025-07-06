@@ -5,14 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d8957d8-4641-4c18-82fa-28ebfd689467" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/web/src/app/register/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/web/src/features/auth/register-form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/web/src/features/content/pages/IndexContentPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/src/app/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/app/login/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/src/features/auth/login-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/features/auth/login-form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/src/styles/cesizen-theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/styles/cesizen-theme.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/.env" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/config/packages/api_platform.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/config/packages/api_platform.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/config/packages/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/config/packages/framework.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/migrations/Version20250630131355.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/migrations/Version20250630131647.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/migrations/Version20250630134916.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/migrations/Version20250630143333.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/migrations/Version20250630153556.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/migrations/Version20250630155025.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/migrations/Version20250701135002.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/migrations/Version20250701195306.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/migrations/Version20250702074303.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/Controller/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/Controller/ResetPasswordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/DataFixtures/ORM/ContentFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/DataFixtures/ORM/ContentFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/DataFixtures/ORM/ExerciseFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/DataFixtures/ORM/ExerciseFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/DataFixtures/ORM/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/DataFixtures/ORM/UserFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/DataPersister/UserOwnedDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/DataPersister/UserOwnedDataPersister.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/Entity/Content.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/Entity/Content.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/Entity/EmotionEntry.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/Entity/EmotionEntry.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/Entity/Exercice.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/Entity/Exercice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/templates/reset_password/email.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/templates/reset_password/email.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/src/app/content/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/app/content/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/src/app/content/protected/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/src/components/layout/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/components/layout/Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/src/features/content/api/contentApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/features/content/api/contentApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/src/features/content/components/ContentCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/features/content/components/ContentCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/src/features/content/pages/protected.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/features/content/pages/protected.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +76,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\p.antoine\cesizen-monorepo\apps\web" />
+      <recent name="C:\Users\p.antoine\cesizen-monorepo\apps\web\public" />
       <recent name="C:\Users\p.antoine\cesizen-monorepo\apps\web\src\features\content\pages" />
       <recent name="C:\Users\p.antoine\cesizen-monorepo\apps\api\src\DataFixtures\ORM" />
     </key>
@@ -77,5 +104,20 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/apps/api/src/Entity/Exercice.php</url>
+          <line>58</line>
+          <properties>
+            <option name="className" value="\App\Entity\Exercise" />
+            <option name="methodName" value="setUser" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

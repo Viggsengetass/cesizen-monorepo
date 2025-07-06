@@ -1,4 +1,4 @@
-import IndexContentPage from "@/features/content/pages";
+import IndexContentPage from "@/features/content/pages/IndexContentPage";
 
 export default function Page() {
     return <IndexContentPage />;

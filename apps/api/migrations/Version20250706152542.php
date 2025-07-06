@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250630143333 extends AbstractMigration
+final class Version20250706152542 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,16 +21,13 @@ final class Version20250630143333 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql(<<<'SQL'
-            ALTER TABLE exercise DROP title
+            ALTER TABLE content ADD user_id INT DEFAULT NULL
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE exercise DROP media_url
+            ALTER TABLE content ADD CONSTRAINT FK_FEC530A9A76ED395 FOREIGN KEY (user_id) REFERENCES app_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE exercise DROP duration
-        SQL);
-        $this->addSql(<<<'SQL'
-            ALTER TABLE exercise RENAME COLUMN type TO name
+            CREATE INDEX IDX_FEC530A9A76ED395 ON content (user_id)
         SQL);
     }
 
@@ -41,16 +38,13 @@ final class Version20250630143333 extends AbstractMigration
             CREATE SCHEMA public
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE exercise ADD title VARCHAR(255) NOT NULL
+            ALTER TABLE content DROP CONSTRAINT FK_FEC530A9A76ED395
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE exercise ADD media_url VARCHAR(255) DEFAULT NULL
+            DROP INDEX IDX_FEC530A9A76ED395
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE exercise ADD duration INT DEFAULT NULL
-        SQL);
-        $this->addSql(<<<'SQL'
-            ALTER TABLE exercise RENAME COLUMN name TO type
+            ALTER TABLE content DROP user_id
         SQL);
     }
 }

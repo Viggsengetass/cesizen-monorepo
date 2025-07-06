@@ -1,35 +1,44 @@
-import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import "./globals.css"
-import { AuthProvider } from "../context/AuthContext"
-import Navbar from "@/components/layout/Navbar"
-import Footer from "@/components/layout/Footer"
+// apps/web/src/app/layout.tsx
+
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+
+import { AuthProvider } from "@/context/AuthContext";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 const geistSans = Geist({
-    variable: "--font-geist-sans",
     subsets: ["latin"],
-})
+    variable: "--font-geist-sans",
+    display: "swap",
+});
 
 const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
     subsets: ["latin"],
-})
+    variable: "--font-geist-mono",
+    display: "swap",
+});
 
 export const metadata: Metadata = {
     title: "CESIZen",
     description: "Application de bien-être pour CESI",
-}
+};
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+                                       children,
+                                   }: {
+    children: React.ReactNode;
+}) {
     return (
         <html lang="fr" className={`${geistSans.variable} ${geistMono.variable}`}>
-        <body className="antialiased bg-cloud text-graphite">
+        <body className="antialiased bg-cloud text-graphite font-sans">
         <AuthProvider>
             <Navbar />
-            <main>{children}</main>
+            <main className="min-h-screen">{children}</main>
             <Footer />
         </AuthProvider>
         </body>
         </html>
-    )
+    );
 }

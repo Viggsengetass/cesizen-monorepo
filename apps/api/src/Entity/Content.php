@@ -9,6 +9,7 @@ use App\Repository\ContentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Entity\User;
 
 #[ORM\Entity(repositoryClass: ContentRepository::class)]
 #[ApiResource(
@@ -61,6 +62,11 @@ class Content
     #[Groups(['content:read'])]
     #[ORM\Column(type: Types::JSON, nullable: true)]
     private ?array $mediaUrls = null;
+
+    #[Groups(['content:read'])]
+    #[ORM\ManyToOne(inversedBy: 'contents')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -163,6 +169,17 @@ class Content
     public function setMediaUrls(?array $mediaUrls): static
     {
         $this->mediaUrls = $mediaUrls;
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
         return $this;
     }
 }

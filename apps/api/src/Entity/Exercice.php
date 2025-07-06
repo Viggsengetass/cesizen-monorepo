@@ -4,10 +4,14 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ExerciseRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ExerciseRepository::class)]
-#[ApiResource(security: "is_granted('ROLE_USER') and object.getUser() === user")]
+#[ApiResource(
+    security: "is_granted('ROLE_USER')",
+    securityPostDenormalize: "object.getUser() == user"
+)]
 class Exercise
 {
     #[ORM\Id]
@@ -18,8 +22,11 @@ class Exercise
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
+
+    #[ORM\Column(type: Types::INTEGER)]
+    private int $duration = 300; // Valeur par défaut (5 min)
 
     #[ORM\Column]
     private \DateTimeImmutable $createdAt;
@@ -27,18 +34,27 @@ class Exercise
     #[ORM\Column]
     private \DateTimeImmutable $updatedAt;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'exercises')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
     public function getId(): ?int { return $this->id; }
+
     public function getName(): ?string { return $this->name; }
     public function setName(string $name): static { $this->name = $name; return $this; }
+
     public function getDescription(): ?string { return $this->description; }
     public function setDescription(string $description): static { $this->description = $description; return $this; }
+
+    public function getDuration(): int { return $this->duration; }
+    public function setDuration(int $duration): static { $this->duration = $duration; return $this; }
+
     public function getCreatedAt(): \DateTimeImmutable { return $this->createdAt; }
     public function setCreatedAt(\DateTimeImmutable $createdAt): static { $this->createdAt = $createdAt; return $this; }
+
     public function getUpdatedAt(): \DateTimeImmutable { return $this->updatedAt; }
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static { $this->updatedAt = $updatedAt; return $this; }
+
     public function getUser(): ?User { return $this->user; }
     public function setUser(?User $user): static { $this->user = $user; return $this; }
 }

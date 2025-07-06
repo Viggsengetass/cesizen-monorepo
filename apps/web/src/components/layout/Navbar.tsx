@@ -1,20 +1,30 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import Image from "next/image"
-import { usePathname } from "next/navigation"
-import { useAuth } from "@/context/AuthContext"
-import { LogOut, LogIn, LayoutDashboard, UserCircle, Activity } from "lucide-react"
-import { Button } from "@/components/ui/Button"
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
+import {
+    LogOut,
+    LogIn,
+    LayoutDashboard,
+    UserCircle,
+    Activity,
+    BookText,
+} from "lucide-react";
+import { Button } from "@/components/ui/Button";
 
 export default function Navbar() {
-    const { isAuthenticated, logout, userRole } = useAuth()
-    const pathname = usePathname()
+    const { isAuthenticated, logout, user } = useAuth();
+    const pathname = usePathname();
 
     return (
         <nav className="bg-cloud/90 backdrop-blur-sm px-6 py-3 shadow-md sticky top-0 z-50 w-full flex justify-between items-center transition-all">
             {/* Logo CESIZen */}
-            <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition">
+            <Link
+                href="/"
+                className="flex items-center gap-2 hover:opacity-90 transition"
+            >
                 <Image
                     src="/logo_cesizen.png"
                     alt="Logo CESIZen"
@@ -39,6 +49,16 @@ export default function Navbar() {
                 {isAuthenticated ? (
                     <>
                         <Link
+                            href="/content"
+                            className={`btn-outline flex items-center gap-2 ${
+                                pathname === "/content" ? "font-semibold underline" : ""
+                            }`}
+                        >
+                            <BookText size={18} />
+                            Contenus
+                        </Link>
+
+                        <Link
                             href="/exercises"
                             className={`btn-outline flex items-center gap-2 ${
                                 pathname === "/exercises" ? "font-semibold underline" : ""
@@ -50,16 +70,20 @@ export default function Navbar() {
 
                         <Link
                             href="/dashboard"
-                            className="btn-outline flex items-center gap-2"
+                            className={`btn-outline flex items-center gap-2 ${
+                                pathname === "/dashboard" ? "font-semibold underline" : ""
+                            }`}
                         >
                             <LayoutDashboard size={18} />
                             Dashboard
                         </Link>
 
-                        {userRole === "ROLE_ADMIN" && (
+                        {user?.roles?.includes("ROLE_ADMIN") && (
                             <Link
                                 href="/admin"
-                                className="btn-outline flex items-center gap-2"
+                                className={`btn-outline flex items-center gap-2 ${
+                                    pathname === "/admin" ? "font-semibold underline" : ""
+                                }`}
                             >
                                 <UserCircle size={18} />
                                 Admin
@@ -83,5 +107,5 @@ export default function Navbar() {
                 )}
             </div>
         </nav>
-    )
+    );
 }

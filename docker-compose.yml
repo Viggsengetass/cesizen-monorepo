@@ -23,6 +23,7 @@ services:
     working_dir: /app
     volumes:
       - ./apps/api:/app
+      # ❌ Ne PAS monter .env.local (il écrase les variables d'env Docker)
     ports:
       - "8080:8000"
     environment:
@@ -34,8 +35,8 @@ services:
     image: maildev/maildev
     container_name: cesizen_maildev
     ports:
-      - "1080:1080" # interface web
-      - "1025:1025" # port SMTP
+      - "1080:1080"
+      - "1025:1025"
 
 volumes:
   postgres_data:
