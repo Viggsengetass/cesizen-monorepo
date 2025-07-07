@@ -1,19 +1,34 @@
-export async function fetchContents() {
-    const token = localStorage.getItem('token'); // ou 'authToken', selon ton app
+export async function fetchContents(): Promise<any> {
+    const token = localStorage.getItem("token");
+
+    console.log("[fetchContents] 🔐 Token récupéré :", token);
+
     if (!token) {
         throw new Error("Aucun token d'authentification trouvé.");
     }
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contents`, {
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/contents`;
+    console.log("[fetchContents] 📡 Appel de :", url);
+
+    const response = await fetch(url, {
         headers: {
-            'Authorization': `Bearer ${token}`,
-            'Accept': 'application/ld+json', // ✅ CORRIGÉ ICI
+            Authorization: `Bearer ${token}`,
+            Accept: "application/ld+json",
         },
+        cache: "no-store",
     });
 
+    console.log("[fetchContents] 📶 Status réponse :", response.status);
+
     if (!response.ok) {
+        console.error("[fetchContents] ❌ Erreur HTTP :", response.statusText);
         throw new Error(`Erreur lors du fetch : ${response.status}`);
     }
 
-    return await response.json();
+    const data = await response.json();
+
+    console.log("[fetchContents] 📦 Données JSON :", data);
+    console.log("[fetchContents] ✅ Contents reçus :", data["hydra:member"]);
+
+    return data;
 }

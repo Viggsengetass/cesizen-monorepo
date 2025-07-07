@@ -54,3 +54,11 @@ services:
             $passwordHasher: '@security.user_password_hasher'
         autoconfigure: false
         public: false
+
+    # ✅ ExerciseUserFilterExtension (filtrage auto par utilisateur connecté)
+    App\Doctrine\Extension\ExerciseUserFilterExtension:
+        tags:
+            - 'api_platform.doctrine.orm.query_extension.collection'
+            - 'api_platform.doctrine.orm.query_extension.item'
+        arguments:
+            $security: '@security.helper'
