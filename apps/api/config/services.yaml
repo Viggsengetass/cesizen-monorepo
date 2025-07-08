@@ -10,6 +10,10 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    # ✅ ContentFixtures (pour qu'elle soit bien exécutée)
+    App\DataFixtures\ORM\ContentFixtures:
+        tags: ['doctrine.fixture.orm']
+
     # 🎯 DiagnosticDataPersister
     App\DataPersister\DiagnosticDataPersister:
         decorates: 'api_platform.doctrine.orm.state.persist_processor'

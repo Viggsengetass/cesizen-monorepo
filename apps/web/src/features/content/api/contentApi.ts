@@ -30,5 +30,5 @@ export async function fetchContents(): Promise<any> {
     console.log("[fetchContents] 📦 Données JSON :", data);
     console.log("[fetchContents] ✅ Contents reçus :", data["hydra:member"]);
 
-    return data;
+    return data["hydra:member"];
 }

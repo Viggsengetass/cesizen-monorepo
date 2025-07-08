@@ -1,4 +1,5 @@
 <?php
+// src/Entity/Content.php
 
 namespace App\Entity;
 
@@ -9,6 +10,7 @@ use App\Repository\ContentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use App\Entity\User;
 
 #[ORM\Entity(repositoryClass: ContentRepository::class)]
@@ -17,7 +19,8 @@ use App\Entity\User;
         new Get(),
         new GetCollection()
     ],
-    normalizationContext: ['groups' => ['content:read']]
+    normalizationContext: ['groups' => ['content:read']],
+    paginationItemsPerPage: 10
 )]
 class Content
 {
@@ -64,6 +67,7 @@ class Content
     private ?array $mediaUrls = null;
 
     #[Groups(['content:read'])]
+    #[MaxDepth(1)]
     #[ORM\ManyToOne(inversedBy: 'contents')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;

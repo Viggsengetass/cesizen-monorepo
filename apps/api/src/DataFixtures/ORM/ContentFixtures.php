@@ -2,18 +2,22 @@
 
 namespace App\DataFixtures\ORM;
 
+use App\DataFixtures\UserFixtures;
 use App\Entity\Content;
 use App\Entity\User;
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ContentFixtures extends Fixture implements DependentFixtureInterface
+class ContentFixtures extends AbstractFixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
         /** @var User $user */
         $user = $this->getReference('user_1', User::class);
+        if (!$user instanceof User) {
+            throw new \RuntimeException('Reference user_1 is not a User instance.');
+        }
 
         $contents = [
             [
@@ -46,7 +50,7 @@ class ContentFixtures extends Fixture implements DependentFixtureInterface
             ],
         ];
 
-        foreach ($contents as $entry) {
+        foreach ($contents as $i => $entry) {
             $content = new Content();
             $content->setTitle($entry['title'])
                 ->setSlug($this->slugify($entry['title']))
@@ -60,6 +64,7 @@ class ContentFixtures extends Fixture implements DependentFixtureInterface
                 ->setUser($user);
 
             $manager->persist($content);
+            $this->addReference("content_$i", $content);
         }
 
         $manager->flush();
@@ -68,7 +73,7 @@ class ContentFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            \App\DataFixtures\ORM\UserFixtures::class,
+            UserFixtures::class,
         ];
     }
 
