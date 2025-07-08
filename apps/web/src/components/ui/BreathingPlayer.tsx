@@ -3,7 +3,6 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
-import { Wind, Smile } from "lucide-react";
 
 interface Props {
     inhale: number;
@@ -30,16 +29,11 @@ export default function BreathingPlayer({
     const [phase, setPhase] = useState<Phase>("inhale");
     const [isRunning, setIsRunning] = useState(true);
     const [remainingTime, setRemainingTime] = useState(inhale);
+    const [elapsed, setElapsed] = useState(0);
+
     const controls = useAnimation();
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-    const nextPhase = (current: Phase): Phase => {
-        if (current === "inhale") return hold > 0 ? "hold" : "exhale";
-        if (current === "hold") return "exhale";
-        if (current === "exhale") return rest > 0 ? "rest" : "inhale";
-        return "inhale";
-    };
 
     const getDuration = (p: Phase): number => {
         if (p === "inhale") return inhale;
@@ -49,31 +43,25 @@ export default function BreathingPlayer({
         return 0;
     };
 
+    const totalDuration = (inhale + hold + exhale + rest) * cycles;
+    const progress = Math.min((elapsed / totalDuration) * 100, 100);
+
+    const nextPhase = (current: Phase): Phase => {
+        if (current === "inhale") return hold > 0 ? "hold" : "exhale";
+        if (current === "hold") return "exhale";
+        if (current === "exhale") return rest > 0 ? "rest" : "inhale";
+        return "inhale";
+    };
+
     const animatePhase = (p: Phase, duration: number) => {
         if (p === "inhale")
-            controls.start({
-                scale: [0.8, 1.3],
-                backgroundColor: "#A8D5BA",
-                transition: { duration },
-            });
+            controls.start({ scale: [0.8, 1.3], backgroundColor: "#A8D5BA", transition: { duration } });
         if (p === "hold")
-            controls.start({
-                scale: 1.3,
-                backgroundColor: "#A8D5BA",
-                transition: { duration: 0.2 },
-            });
+            controls.start({ scale: 1.3, backgroundColor: "#A8D5BA", transition: { duration: 0.2 } });
         if (p === "exhale")
-            controls.start({
-                scale: [1.3, 0.8],
-                backgroundColor: "#D5CFE1",
-                transition: { duration },
-            });
+            controls.start({ scale: [1.3, 0.8], backgroundColor: "#D5CFE1", transition: { duration } });
         if (p === "rest")
-            controls.start({
-                scale: 0.8,
-                backgroundColor: "#F6F9FC",
-                transition: { duration },
-            });
+            controls.start({ scale: 0.8, backgroundColor: "#F6F9FC", transition: { duration } });
     };
 
     const startPhase = (p: Phase) => {
@@ -89,6 +77,8 @@ export default function BreathingPlayer({
                 }
                 return prev - 1;
             });
+
+            setElapsed((prev) => Math.min(prev + 1, totalDuration));
         }, 1000);
 
         timeoutRef.current = setTimeout(() => {
@@ -115,6 +105,7 @@ export default function BreathingPlayer({
         setCycle(0);
         setPhase("inhale");
         setRemainingTime(inhale);
+        setElapsed(0);
     }, [inhale, hold, exhale, rest, cycles]);
 
     const getInstruction = () => {
@@ -126,6 +117,18 @@ export default function BreathingPlayer({
 
     return (
         <div className="flex flex-col items-center justify-center gap-6 w-full">
+            {/* Barre de progression */}
+            <div className="fixed bottom-0 left-0 w-full px-6 pb-6">
+                <div className="w-full max-w-4xl mx-auto h-2 bg-[#E5E7EB] rounded-full overflow-hidden">
+                    <div
+                        className="h-full bg-[#A8D5BA] transition-all duration-300"
+                        style={{ width: `${progress}%` }}
+                    />
+                </div>
+            </div>
+
+
+            {/* Cercle animé */}
             <motion.div
                 animate={controls}
                 initial={{ scale: 0.8, backgroundColor: "#A3D2CA" }}
@@ -134,6 +137,7 @@ export default function BreathingPlayer({
                 {remainingTime}s
             </motion.div>
 
+            {/* Infos cycle & instructions */}
             <div className="flex flex-col items-center justify-center mt-4 text-center gap-2">
                 <div className="text-sm text-[#2E2E2E]">
                     Cycle {cycle + 1} / {cycles}
@@ -142,6 +146,7 @@ export default function BreathingPlayer({
                     {getInstruction()}
                 </div>
 
+                {/* Bouton Pause / Reprendre */}
                 <button
                     onClick={() => setIsRunning(!isRunning)}
                     className="btn-primary mt-4 flex items-center gap-2"
