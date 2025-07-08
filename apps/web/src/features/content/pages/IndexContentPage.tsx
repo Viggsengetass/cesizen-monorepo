@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Select from "@/components/ui/Select";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function IndexContentPage() {
     const { token } = useAuth();
@@ -41,13 +42,7 @@ export default function IndexContentPage() {
         setCurrentPage(1);
     };
 
-    if (loading) {
-        return (
-            <div className="flex justify-center items-center h-screen text-gray-500">
-                Chargement...
-            </div>
-        );
-    }
+    if (loading) return <LoadingScreen />;
 
     if (error) {
         return (
