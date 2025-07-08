@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/Button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Select from "@/components/ui/Select";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+import WavyFooter from "@/components/ui/WavyFooter";
+import AnimatedWaves from "@/components/ui/AnimatedWaves";
 
 export default function IndexContentPage() {
     const { token } = useAuth();
@@ -28,7 +30,10 @@ export default function IndexContentPage() {
     }, [token]);
 
     const totalPages = Math.ceil(data.length / itemsPerPage);
-    const paginatedData = data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+    const paginatedData = data.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
 
     const handlePageChange = (page: number) => {
         if (page >= 1 && page <= totalPages) {
@@ -54,7 +59,7 @@ export default function IndexContentPage() {
 
     return (
         <motion.div
-            className="min-h-screen bg-[#F6F9FC] py-12 px-4"
+            className="relative min-h-screen bg-[#F6F9FC] py-12 px-4 overflow-hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -130,6 +135,8 @@ export default function IndexContentPage() {
                     </div>
                 </>
             )}
+
+            <AnimatedWaves />
         </motion.div>
     );
 }
