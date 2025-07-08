@@ -8,6 +8,11 @@ import Loader from "@/components/ui/Loader";
 import Select from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import BackgroundIcon from "@/components/ui/BackgroundIcon";
+import { Wind, Moon, Smile } from "lucide-react";
+import AnimatedWaves from "@/components/ui/AnimatedWaves";
+
 
 const staticExercises: Exercise[] = [
     {
@@ -217,12 +222,53 @@ export default function IndexExercisePage() {
     }
 
     return (
-        <main className="py-10 px-4 bg-[#F6F9FC] min-h-screen">
-            <h1 className="text-3xl font-bold text-[#2E2E2E] text-center mb-6">
-                Mes <span className="text-[#A8D5BA]">Exercices</span> de Respiration
-            </h1>
+        <main className="relative py-10 px-4 bg-[#F6F9FC] min-h-screen overflow-hidden">
+            <AnimatedWaves />
 
-            <div className="flex justify-center mb-8">
+            {/* Arrière-plan doux */}
+            <BackgroundIcon
+                className="top-10 left-10"
+                size="w-40 h-40"
+                color="#D5CFE1"
+                opacity="opacity-20"
+                style={{ transform: "rotate(15deg)" }}
+            >
+                <Wind strokeWidth={1.5} className="w-full h-full" />
+            </BackgroundIcon>
+
+            <BackgroundIcon
+                className="bottom-20 right-10"
+                size="w-32 h-32"
+                color="#A3D2CA"
+                opacity="opacity-10"
+                style={{ transform: "rotate(-20deg)" }}
+            >
+                <Moon strokeWidth={1.5} className="w-full h-full" />
+            </BackgroundIcon>
+
+            <BackgroundIcon
+                className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                size="w-64 h-64"
+                color="#FADADD"
+                opacity="opacity-5"
+            >
+                <Smile strokeWidth={1.5} className="w-full h-full" />
+            </BackgroundIcon>
+            <motion.h1
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-3xl font-bold text-[#2E2E2E] text-center mb-6"
+            >
+                🌬️ Mes <span className="text-[#A8D5BA]">Exercices</span> de Respiration
+            </motion.h1>
+
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="flex justify-center mb-8"
+            >
                 <Select value={itemsPerPage} onChange={handleItemsPerPageChange}>
                     {[3, 6, 9, 12].map((count) => (
                         <option key={count} value={count}>
@@ -230,7 +276,7 @@ export default function IndexExercisePage() {
                         </option>
                     ))}
                 </Select>
-            </div>
+            </motion.div>
 
             {error ? (
                 <p className="text-center text-[#FADADD] font-semibold">
@@ -238,11 +284,30 @@ export default function IndexExercisePage() {
                 </p>
             ) : (
                 <>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto"
+                        initial="hidden"
+                        animate="visible"
+                        variants={{
+                            hidden: {},
+                            visible: {
+                                transition: {
+                                    staggerChildren: 0.1
+                                }
+                            }
+                        }}
+                    >
                         {paginatedExercises.map((exercise) => (
-                            <ExerciseCard key={exercise.id} exercise={exercise} />
+                            <motion.div
+                                key={exercise.id}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.4 }}
+                            >
+                                <ExerciseCard exercise={exercise} />
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
 
                     <div className="flex justify-center mt-10 gap-2 items-center flex-wrap">
                         <Button
