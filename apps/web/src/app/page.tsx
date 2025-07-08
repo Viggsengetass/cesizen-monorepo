@@ -1,5 +1,13 @@
-import IndexContentPage from "@/features/content/pages";
+"use client";
 
-export default function Page() {
-    return <IndexContentPage />;
+import IndexContentPage from "@/features/content/pages";
+import CookieAccessButton from "@/components/ui/CookieAccessButton";
+
+export default function Page(): JSX.Element {
+    return (
+        <>
+            <IndexContentPage />
+            <CookieAccessButton />
+        </>
+    );
 }

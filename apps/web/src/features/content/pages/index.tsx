@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Heart, Wind, BookText } from "lucide-react";
+import { Heart, Wind, BookText, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { IconWrapper } from "@/components/ui/IconWrapper";
+import CookieConsent from "react-cookie-consent";
 
 export default function IndexContentPage() {
     return (
@@ -42,6 +43,16 @@ export default function IndexContentPage() {
                         <Link href="/diagnostic"><Button variant="soft">Découvrir CESIZen</Button></Link>
                     </div>
                 </div>
+                <motion.div
+                    className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20"
+                    animate={{ y: [0, 20, 0] }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                    <svg width="24" height="36" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="1.5" y="1.5" width="21" height="33" rx="10.5" stroke="white" strokeWidth="3" />
+                        <circle cx="12" cy="10" r="2" fill="white" />
+                    </svg>
+                </motion.div>
             </div>
 
             {/* Fonctionnalités */}
@@ -66,23 +77,77 @@ export default function IndexContentPage() {
                 </div>
             </section>
 
-            {/* Animation respiration */}
-            <section className="text-center mb-32">
-                <motion.div
-                    className="w-32 h-32 rounded-full bg-[var(--cesizen-skyblue)] mx-auto mb-6"
-                    animate={{ scale: [1, 1.5, 1] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <p className="text-lg font-medium text-graphite">Prenez une pause… Respirez profondément.</p>
+            {/* Témoignages */}
+            <section className="w-full bg-white py-20 px-4 text-center">
+                <h2 className="text-2xl font-semibold text-graphite mb-10">Ils en parlent mieux que nous</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                    {[
+                        { name: "Camille L.", text: "Grâce à CESIZen, j’ai appris à mieux gérer mon stress pendant mes examens." },
+                        { name: "Théo R.", text: "L’exercice de respiration m’a littéralement sauvé pendant une période de fatigue intense." },
+                        { name: "Jade M.", text: "Les contenus sont clairs, doux et bienveillants. J’adore l’univers visuel de l’appli." }
+                    ].map((testimonial, i) => (
+                        <Card key={i} className="text-left">
+                            <div className="flex items-start gap-4">
+                                <MessageCircle className="text-[#D5CFE1] mt-1" size={32} />
+                                <div>
+                                    <p className="text-base text-graphite italic">"{testimonial.text}"</p>
+                                    <p className="mt-2 font-semibold text-graphite">— {testimonial.name}</p>
+                                </div>
+                            </div>
+                        </Card>
+                    ))}
+                </div>
             </section>
 
-            {/* Footer */}
-            <footer className="text-sm text-center text-gray-400 mb-6">
-                <p>© 2025 CESIZen — Tous droits réservés</p>
-                <p className="mt-2">
-                    <a href="/cgu" className="underline">CGU</a> · <a href="/credits" className="underline">Crédits</a>
-                </p>
-            </footer>
+            {/* Call to Action */}
+            <section className="w-full py-16 px-4 bg-[#A3D2CA]/20 text-center">
+                <h2 className="text-2xl font-semibold text-graphite mb-4">Rejoignez l’aventure CESIZen</h2>
+                <p className="text-base text-graphite mb-6">Inscrivez-vous dès maintenant pour bénéficier de tous les outils bien-être personnalisés.</p>
+                <Link href="/login">
+                    <Button variant="primary">Créer un compte</Button>
+                </Link>
+            </section>
+
+            {/* Cookie Consent */}
+            <CookieConsent
+                location="bottom"
+                buttonText="Accepter"
+                declineButtonText="Refuser"
+                enableDeclineButton
+                cookieName="cesizenCookieConsent"
+                style={{
+                    background: "#2E2E2E",
+                    color: "#F6F9FC",
+                    fontSize: "16px",
+                    padding: "1rem",
+                }}
+                buttonStyle={{
+                    backgroundColor: "#A8D5BA",
+                    color: "#fff",
+                    borderRadius: "1rem",
+                    padding: "0.5rem 1rem",
+                    fontWeight: "600",
+                    marginLeft: "1rem",
+                }}
+                declineButtonStyle={{
+                    backgroundColor: "transparent",
+                    color: "#fff",
+                    border: "2px solid #fff",
+                    borderRadius: "1rem",
+                    padding: "0.5rem 1rem",
+                    fontWeight: "600",
+                    marginLeft: "1rem",
+                }}
+            >
+                Ce site utilise des cookies pour améliorer votre expérience.{" "}
+                <a
+                    href="/politique-cookies"
+                    className="underline text-[#A8D5BA] hover:text-[#92c6a5]"
+                >
+                    En savoir plus
+                </a>
+            </CookieConsent>
+
         </motion.main>
     );
 }
