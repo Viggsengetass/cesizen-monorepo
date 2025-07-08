@@ -3,6 +3,7 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
+import { Wind, Smile } from "lucide-react";
 
 interface Props {
     inhale: number;
@@ -10,6 +11,8 @@ interface Props {
     exhale: number;
     rest?: number;
     cycles: number;
+    inhaleMethod?: "nez" | "bouche";
+    exhaleMethod?: "nez" | "bouche";
 }
 
 type Phase = "inhale" | "hold" | "exhale" | "rest";
@@ -20,6 +23,8 @@ export default function BreathingPlayer({
                                             exhale,
                                             rest = 0,
                                             cycles,
+                                            inhaleMethod = "nez",
+                                            exhaleMethod = "bouche",
                                         }: Props) {
     const [cycle, setCycle] = useState(0);
     const [phase, setPhase] = useState<Phase>("inhale");
@@ -112,6 +117,13 @@ export default function BreathingPlayer({
         setRemainingTime(inhale);
     }, [inhale, hold, exhale, rest, cycles]);
 
+    const getInstruction = () => {
+        if (phase === "inhale") return `Inspire par le ${inhaleMethod}`;
+        if (phase === "exhale") return `Expire par la ${exhaleMethod}`;
+        if (phase === "hold") return "Retiens ta respiration";
+        if (phase === "rest") return "Repos";
+    };
+
     return (
         <div className="flex flex-col items-center justify-center gap-6 w-full">
             <motion.div
@@ -127,10 +139,7 @@ export default function BreathingPlayer({
                     Cycle {cycle + 1} / {cycles}
                 </div>
                 <div className="text-lg font-semibold capitalize text-[#2E2E2E]">
-                    {phase === "inhale" && "Inspire"}
-                    {phase === "hold" && "Retiens"}
-                    {phase === "exhale" && "Expire"}
-                    {phase === "rest" && "Repos"}
+                    {getInstruction()}
                 </div>
 
                 <button
@@ -139,13 +148,11 @@ export default function BreathingPlayer({
                 >
                     {isRunning ? (
                         <>
-                            <Pause className="w-4 h-4" />
-                            Pause
+                            <Pause className="w-4 h-4" /> Pause
                         </>
                     ) : (
                         <>
-                            <Play className="w-4 h-4" />
-                            Reprendre
+                            <Play className="w-4 h-4" /> Reprendre
                         </>
                     )}
                 </button>

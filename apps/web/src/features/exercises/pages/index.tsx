@@ -9,52 +9,170 @@ import Select from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-// ✅ Exercices statiques réalistes et paramétrés
 const staticExercises: Exercise[] = [
     {
         id: "static-calme-express",
         title: "🧘 Calme Express",
         type: "relaxation",
         duration: 120,
+        objective: "Se recentrer rapidement et apaiser l’anxiété passagère.",
         instructions: `
-1. Inspire calmement pendant 4 secondes.
+1. Inspire calmement par le nez pendant 4 secondes.
 2. Garde ta respiration pendant 2 secondes.
-3. Expire doucement pendant 4 secondes.
+3. Expire doucement par la bouche pendant 4 secondes.
 4. Répète 4 cycles.`,
         inhale: 4,
         hold: 2,
         exhale: 4,
         cycles: 4,
+        inhaleMethod: "nez",
+        exhaleMethod: "bouche",
     },
     {
         id: "static-coherence-cardiaque",
         title: "❤️ Cohérence Cardiaque 365",
         type: "concentration",
         duration: 300,
+        objective: "Réguler le stress et améliorer la concentration.",
         instructions: `
-1. Inspire pendant 5 secondes.
-2. Expire pendant 5 secondes.
+1. Inspire profondément par le nez pendant 5 secondes.
+2. Expire par la bouche pendant 5 secondes.
 3. Répète pendant 6 cycles.`,
         inhale: 5,
         hold: 0,
         exhale: 5,
         cycles: 6,
+        inhaleMethod: "nez",
+        exhaleMethod: "bouche",
     },
     {
         id: "static-sommeil-paisible",
         title: "🌙 Sommeil Paisible",
         type: "sommeil",
         duration: 180,
+        objective: "Préparer le corps et l’esprit à l’endormissement.",
         instructions: `
-1. Inspire pendant 4 secondes.
+1. Inspire par le nez pendant 4 secondes.
 2. Garde ta respiration pendant 7 secondes.
-3. Expire doucement pendant 8 secondes.
+3. Expire lentement par la bouche pendant 8 secondes.
 4. Répète pendant 4 cycles.`,
         inhale: 4,
         hold: 7,
         exhale: 8,
         cycles: 4,
+        inhaleMethod: "nez",
+        exhaleMethod: "bouche",
     },
+    {
+        id: "static-energie-matinale",
+        title: "🌞 Énergie Matinale",
+        type: "énergie",
+        duration: 180,
+        objective: "Booster ton énergie dès le réveil.",
+        instructions: `
+1. Inspire rapidement par le nez pendant 3 secondes.
+2. Expire par la bouche pendant 3 secondes.
+3. Répète pendant 6 cycles.`,
+        inhale: 3,
+        hold: 0,
+        exhale: 3,
+        cycles: 6,
+        inhaleMethod: "nez",
+        exhaleMethod: "bouche",
+    },
+    {
+        id: "static-focus-flash",
+        title: "🎯 Focus Flash",
+        type: "concentration",
+        duration: 150,
+        objective: "Se concentrer rapidement avant une tâche.",
+        instructions: `
+1. Inspire profondément par le nez pendant 5 secondes.
+2. Garde ta respiration pendant 2 secondes.
+3. Expire par la bouche pendant 5 secondes.
+4. Répète pendant 5 cycles.`,
+        inhale: 5,
+        hold: 2,
+        exhale: 5,
+        cycles: 5,
+        inhaleMethod: "nez",
+        exhaleMethod: "bouche",
+    },
+    {
+        id: "static-detente-profonde",
+        title: "🛀 Détente Profonde",
+        type: "relaxation",
+        duration: 240,
+        objective: "Relâcher les tensions après une journée chargée.",
+        instructions: `
+1. Inspire doucement par le nez pendant 6 secondes.
+2. Garde ta respiration pendant 4 secondes.
+3. Expire lentement par la bouche pendant 6 secondes.
+4. Répète pendant 4 cycles.`,
+        inhale: 6,
+        hold: 4,
+        exhale: 6,
+        cycles: 4,
+        inhaleMethod: "nez",
+        exhaleMethod: "bouche",
+    },
+    {
+        id: "static-respiration-box",
+        title: "📦 Respiration en Carré",
+        type: "concentration",
+        duration: 240,
+        objective: "Stabiliser l’esprit et retrouver le calme.",
+        instructions: `
+1. Inspire par le nez pendant 4 secondes.
+2. Garde ta respiration pendant 4 secondes.
+3. Expire par la bouche pendant 4 secondes.
+4. Attends 4 secondes avant de recommencer.
+5. Répète pendant 4 cycles.`,
+        inhale: 4,
+        hold: 4,
+        exhale: 4,
+        rest: 4,
+        cycles: 4,
+        inhaleMethod: "nez",
+        exhaleMethod: "bouche",
+    },
+    {
+        id: "static-souffle-marché",
+        title: "🚶 Respiration en Marche",
+        type: "activité",
+        duration: 180,
+        objective: "Synchroniser la marche et la respiration pour apaiser l’esprit.",
+        instructions: `
+1. Inspire par le nez sur 3 pas.
+2. Expire par la bouche sur 5 pas.
+3. Répète pendant 6 cycles.`,
+        inhale: 3,
+        hold: 0,
+        exhale: 5,
+        cycles: 6,
+        inhaleMethod: "nez",
+        exhaleMethod: "bouche",
+    },
+    {
+        id: "static-zen-total",
+        title: "🧘‍♂️ Zen Total",
+        type: "relaxation",
+        duration: 300,
+        objective: "Plonger dans une relaxation complète du corps et de l’esprit.",
+        instructions: `
+1. Inspire lentement par le nez pendant 6 secondes.
+2. Garde la respiration pendant 6 secondes.
+3. Expire lentement par la bouche pendant 6 secondes.
+4. Repos de 3 secondes entre chaque cycle.
+5. Répète pendant 5 cycles.`,
+        inhale: 6,
+        hold: 6,
+        exhale: 6,
+        rest: 3,
+        cycles: 5,
+        inhaleMethod: "nez",
+        exhaleMethod: "bouche",
+    }
 ];
 
 export default function IndexExercisePage() {
