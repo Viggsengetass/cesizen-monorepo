@@ -39,7 +39,7 @@ export default function IndexContentPage() {
                     </p>
                     <div className="mt-6 flex flex-col sm:flex-row gap-4">
                         <Link href="/login"><Button variant="primary">Se connecter</Button></Link>
-                        <Link href="/diagnostic"><Button variant="outline">Découvrir CESIZen</Button></Link>
+                        <Link href="/diagnostic"><Button variant="soft">Découvrir CESIZen</Button></Link>
                     </div>
                 </div>
             </div>
