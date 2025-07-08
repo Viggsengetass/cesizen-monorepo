@@ -7,6 +7,7 @@ import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import RouterLoaderProvider from "@/components/layout/RouterLoaderProvider"; // ✅ import ajouté
 
 const geistSans = Geist({
     subsets: ["latin"],
@@ -34,9 +35,11 @@ export default function RootLayout({
         <html lang="fr" className={`${geistSans.variable} ${geistMono.variable}`}>
         <body className="antialiased bg-cloud text-graphite font-sans">
         <AuthProvider>
-            <Navbar />
-            <main className="min-h-screen">{children}</main>
-            <Footer />
+            <RouterLoaderProvider>
+                <Navbar />
+                <main className="min-h-screen">{children}</main>
+                <Footer />
+            </RouterLoaderProvider>
         </AuthProvider>
         </body>
         </html>

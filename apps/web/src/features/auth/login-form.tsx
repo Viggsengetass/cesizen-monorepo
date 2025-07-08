@@ -27,7 +27,7 @@ export default function LoginForm() {
             const res = await fetch("http://localhost:8080/api/login_check", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }), // ✅ ICI
+                body: JSON.stringify({ email, password }),
             });
 
             if (!res.ok) {
@@ -92,6 +92,13 @@ export default function LoginForm() {
             <Button type="submit" disabled={loading} className="w-full">
                 {loading ? "Connexion..." : "Se connecter"}
             </Button>
+
+            <p className="text-sm text-center text-graphite mt-4">
+                Pas encore de compte ?{" "}
+                <Link href="/register" className="text-[#A8D5BA] hover:underline font-medium">
+                    Créer un compte
+                </Link>
+            </p>
         </form>
     );
 }
