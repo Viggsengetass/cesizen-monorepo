@@ -1,4 +1,4 @@
-export async function fetchContents(): Promise<any> {
+export async function fetchContents(): Promise<any[]> {
     const token = localStorage.getItem("token");
 
     console.log("[fetchContents] 🔐 Token récupéré :", token);
@@ -27,8 +27,9 @@ export async function fetchContents(): Promise<any> {
 
     const data = await response.json();
 
-    console.log("[fetchContents] 📦 Données JSON :", data);
-    console.log("[fetchContents] ✅ Contents reçus :", data["hydra:member"]);
+    console.log("[fetchContents] 📦 Données JSON complètes :", data);
+    console.log("[fetchContents] ✅ Contents reçus (member) :", data["member"]);
 
-    return data["hydra:member"];
+    // Retourne le tableau de contenus à partir de la clé "member"
+    return data["member"] || [];
 }

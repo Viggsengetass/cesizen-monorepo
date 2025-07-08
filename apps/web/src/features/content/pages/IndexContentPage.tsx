@@ -5,82 +5,136 @@ import { fetchContents } from "../api/contentApi";
 import { useAuth } from "@/context/AuthContext";
 import ContentCard from "../components/ContentCard";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/Button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Select from "@/components/ui/Select";
 
-export default function IndexContentPage(): JSX.Element {
+export default function IndexContentPage() {
     const { token } = useAuth();
     const [data, setData] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(9);
 
     useEffect(() => {
         if (!token) return;
 
-        fetchContents(token)
-            .then((res) => setData(res["member"] || []))
+        fetchContents()
+            .then((res) => setData(res))
             .catch((err) => setError(err.message))
             .finally(() => setLoading(false));
     }, [token]);
 
+    const totalPages = Math.ceil(data.length / itemsPerPage);
+    const paginatedData = data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+    const handlePageChange = (page: number) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
+
+    const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = parseInt(e.target.value);
+        setItemsPerPage(value);
+        setCurrentPage(1);
+    };
+
     if (loading) {
         return (
-            <div className="p-6 flex justify-center items-center text-xl text-[#2E2E2E] h-60 animate-pulse">
-                Chargement des contenus...
+            <div className="flex justify-center items-center h-screen text-gray-500">
+                Chargement...
             </div>
         );
     }
 
     if (error) {
         return (
-            <div className="p-6 text-center text-red-500 text-lg">
+            <div className="p-6 text-center text-red-500">
                 Erreur lors du chargement : {error}
             </div>
         );
     }
 
     return (
-        <div className="p-6 min-h-screen bg-[#F6F9FC]">
-            <motion.h1
-                className="text-3xl font-bold text-[#2E2E2E] mb-8 text-center"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-            >
-                🧘‍♀️ Découvrez nos contenus bien-être
-            </motion.h1>
+        <motion.div
+            className="min-h-screen bg-[#F6F9FC] py-12 px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+        >
+            <h1 className="text-3xl md:text-4xl font-bold text-center text-[#2E2E2E] mb-6 flex justify-center items-center gap-2">
+                🌿 Contenus de bien-être
+            </h1>
+
+            {/* Sélecteur personnalisé */}
+            <div className="flex justify-center mb-8">
+                <Select value={itemsPerPage} onChange={handleItemsPerPageChange}>
+                    {[9, 18, 27, 36].map((count) => (
+                        <option key={count} value={count}>
+                            {count} articles par page
+                        </option>
+                    ))}
+                </Select>
+            </div>
 
             {data.length === 0 ? (
-                <p className="text-gray-500 italic text-center text-lg">
-                    Aucun contenu disponible pour le moment...
-                </p>
+                <p className="text-center text-gray-600">Aucun contenu disponible.</p>
             ) : (
-                <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 gap-6"
-                    initial="hidden"
-                    animate="visible"
-                    variants={{
-                        visible: { transition: { staggerChildren: 0.1 } },
-                        hidden: {},
-                    }}
-                >
-                    {data.map((item) => (
-                        <motion.div
-                            key={item["@id"] || item.id}
-                            variants={{
-                                hidden: { opacity: 0, y: 20 },
-                                visible: { opacity: 1, y: 0 },
-                            }}
+                <>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        {paginatedData.map((item, index) => (
+                            <motion.div
+                                key={item["@id"] || item.id || index}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.4, delay: index * 0.05 }}
+                            >
+                                <ContentCard
+                                    title={item.title}
+                                    slug={item.slug}
+                                    type={item.type}
+                                    coverImage={item.coverImage}
+                                    body={item.body}
+                                />
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* Pagination */}
+                    <div className="flex justify-center mt-10 flex-wrap gap-2 items-center">
+                        <Button
+                            variant="outline"
+                            onClick={() => handlePageChange(currentPage - 1)}
+                            disabled={currentPage === 1}
                         >
-                            <ContentCard
-                                title={item.title || "Sans titre"}
-                                slug={item.slug || "contenu-inconnu"}
-                                type={item.type || "inconnu"}
-                                coverImage={item.coverImage || undefined}
-                                body={item.body || ""}
-                            />
-                        </motion.div>
-                    ))}
-                </motion.div>
+                            <ChevronLeft className="w-4 h-4 text-[#A8D5BA] mr-1" />
+                            Précédent
+                        </Button>
+
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                            <Button
+                                key={page}
+                                variant={page === currentPage ? "default" : "outline"}
+                                className={page === currentPage ? "btn-primary" : "btn-outline"}
+                                onClick={() => handlePageChange(page)}
+                            >
+                                {page}
+                            </Button>
+                        ))}
+
+                        <Button
+                            variant="outline"
+                            onClick={() => handlePageChange(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                        >
+                            Suivant
+                            <ChevronRight className="w-4 h-4 text-[#A8D5BA] ml-1" />
+                        </Button>
+                    </div>
+                </>
             )}
-        </div>
+        </motion.div>
     );
 }
