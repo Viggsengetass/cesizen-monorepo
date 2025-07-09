@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { Button } from "@/components/ui/Button";
@@ -10,14 +10,30 @@ function slugify(text: string) {
     return text
         .toString()
         .normalize("NFD")
-        .replace(/[̀-ͯ]/g, "")
+        .replace(/[\u0300-\u036f]/g, "")
         .toLowerCase()
         .trim()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
 }
 
-export default function ContentForm() {
+type Content = {
+    id: number;
+    title: string;
+    coverImage?: string;
+    body: string;
+    type?: string;
+    videoUrl?: string;
+    mediaUrls?: string[];
+};
+
+export default function ContentForm({
+                                        onCreated,
+                                        existingContent,
+                                    }: {
+    onCreated?: () => void;
+    existingContent?: Content | null;
+}) {
     const [title, setTitle] = useState("");
     const [coverImage, setCoverImage] = useState("");
     const [body, setBody] = useState("");
@@ -25,26 +41,42 @@ export default function ContentForm() {
     const [videoUrl, setVideoUrl] = useState("");
     const [mediaUrls, setMediaUrls] = useState("");
 
+    useEffect(() => {
+        if (existingContent) {
+            setTitle(existingContent.title || "");
+            setCoverImage(existingContent.coverImage || "");
+            setBody(existingContent.body || "");
+            setType(existingContent.type || "");
+            setVideoUrl(existingContent.videoUrl || "");
+            setMediaUrls(existingContent.mediaUrls?.join(", ") || "");
+        }
+    }, [existingContent]);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
         const token = localStorage.getItem("token");
 
         const contentData = {
             title,
             slug: slugify(title),
-            coverImage,
+            coverImage: coverImage || null,
             body,
             type: type || null,
             videoUrl: videoUrl || null,
-            mediaUrls: mediaUrls ? mediaUrls.split(",").map(url => url.trim()) : null,
+            mediaUrls: mediaUrls
+                ? mediaUrls.split(",").map((url) => url.trim())
+                : null,
         };
 
-        console.log("Données envoyées au backend :", contentData);
+        const url = existingContent
+            ? `http://localhost:8080/api/contents/${existingContent.id}`
+            : `http://localhost:8080/api/contents`;
+
+        const method = existingContent ? "PUT" : "POST";
 
         try {
-            const res = await fetch("http://localhost:8080/api/contents", {
-                method: "POST",
+            const res = await fetch(url, {
+                method,
                 headers: {
                     "Content-Type": "application/ld+json",
                     Authorization: `Bearer ${token}`,
@@ -52,23 +84,21 @@ export default function ContentForm() {
                 body: JSON.stringify(contentData),
             });
 
-            const data = await res.json();
-            console.log("Réponse serveur :", data);
-
             if (res.ok) {
-                alert("Contenu créé !");
+                alert(existingContent ? "Contenu modifié !" : "Contenu créé !");
                 setTitle("");
                 setCoverImage("");
                 setBody("");
                 setType("");
                 setVideoUrl("");
                 setMediaUrls("");
+                onCreated?.();
             } else {
-                alert("Erreur à la création");
+                alert("Erreur lors de l'enregistrement du contenu");
             }
         } catch (error) {
             console.error("Erreur réseau :", error);
-            alert("Erreur réseau lors de la création");
+            alert("Erreur réseau");
         }
     };
 
@@ -110,7 +140,7 @@ export default function ContentForm() {
                     id="type"
                     value={type}
                     onChange={(e) => setType(e.target.value)}
-                    className="border border-[#A3D2CA] rounded-xl px-4 py-2 w-full focus:ring-2 focus:ring-[#A8D5BA] bg-white"
+                    className="input bg-white"
                 >
                     <option value="">-- Sélectionnez une catégorie --</option>
                     <option value="meditation">Méditation</option>
@@ -140,7 +170,7 @@ export default function ContentForm() {
                 />
             </div>
             <Button type="submit" className="btn-primary">
-                Ajouter le contenu
+                {existingContent ? "Modifier le contenu" : "Ajouter le contenu"}
             </Button>
         </form>
     );
