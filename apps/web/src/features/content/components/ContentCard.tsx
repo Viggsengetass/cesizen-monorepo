@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, useState } from "react";
 import { Dialog } from "@headlessui/react";
 
@@ -9,7 +11,24 @@ interface ContentCardProps {
     body?: string;
 }
 
-const ContentCard: FC<ContentCardProps> = ({ title, slug, type, coverImage, body }) => {
+function getBadgeStyle(type: string) {
+    switch (type) {
+        case "meditation":
+            return "bg-[#D5CFE1] text-[#2E2E2E]";
+        case "respiration":
+            return "bg-[#A3D2CA] text-[#2E2E2E]";
+        case "sommeil":
+            return "bg-[#FADADD] text-[#2E2E2E]";
+        case "gestion-du-stress":
+            return "bg-[#A8D5BA] text-white";
+        case "pleine-conscience":
+            return "bg-[#F6F9FC] text-[#2E2E2E] border border-[#D5CFE1]";
+        default:
+            return "bg-gray-300 text-gray-700";
+    }
+}
+
+const ContentCard: FC<ContentCardProps> = ({ title, slug, type = "", coverImage, body }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -26,8 +45,14 @@ const ContentCard: FC<ContentCardProps> = ({ title, slug, type, coverImage, body
                     />
                 )}
                 <div>
+                    {type && (
+                        <span
+                            className={`inline-block px-3 py-1 text-xs font-semibold rounded-2xl mb-1 ${getBadgeStyle(type)}`}
+                        >
+                            {type.replace(/-/g, " ")}
+                        </span>
+                    )}
                     <h2 className="text-lg font-semibold text-[#2E2E2E]">{title}</h2>
-                    <p className="text-sm text-[#A3D2CA]">{type}</p>
                     <p className="text-xs text-gray-500 italic">/{slug}</p>
                 </div>
             </div>
@@ -51,9 +76,15 @@ const ContentCard: FC<ContentCardProps> = ({ title, slug, type, coverImage, body
                             className="w-full h-48 object-cover rounded-xl mb-4"
                         />
                     )}
+                    {type && (
+                        <span
+                            className={`inline-block px-3 py-1 text-xs font-semibold rounded-2xl mb-2 ${getBadgeStyle(type)}`}
+                        >
+                            {type.replace(/-/g, " ")}
+                        </span>
+                    )}
                     <h2 className="text-xl font-bold text-[#2E2E2E] mb-2">{title}</h2>
-                    <p className="text-sm text-[#A3D2CA] mb-1">{type}</p>
-                    <p className="text-gray-600 text-base">{body}</p>
+                    <p className="text-gray-600 text-base whitespace-pre-wrap">{body}</p>
                 </Dialog.Panel>
             </Dialog>
         </>
