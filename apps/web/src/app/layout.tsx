@@ -1,5 +1,3 @@
-// apps/web/src/app/layout.tsx
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -7,7 +5,8 @@ import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import RouterLoaderProvider from "@/components/layout/RouterLoaderProvider"; // ✅ import ajouté
+import RouterLoaderProvider from "@/components/layout/RouterLoaderProvider";
+import { ToastDisplay } from "@/components/ui/ToastDisplay"; // ✅ ajout pour les toasts
 
 const geistSans = Geist({
     subsets: ["latin"],
@@ -39,6 +38,7 @@ export default function RootLayout({
                 <Navbar />
                 <main className="min-h-screen">{children}</main>
                 <Footer />
+                <ToastDisplay /> {/* ✅ Affichage global des toasts */}
             </RouterLoaderProvider>
         </AuthProvider>
         </body>

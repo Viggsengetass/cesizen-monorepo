@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d8957d8-4641-4c18-82fa-28ebfd689467" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/web/src/app/admin/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/web/src/app/informations/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/web/src/features/admin/AdminDashboard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/web/src/features/admin/ContentForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/DataPersister/ContentDataPersister.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/web/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/Entity/Content.php" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/Entity/Content.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/public/logo_cesizen.png" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/public/logo_cesizen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/web/src/features/admin/ContentForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/features/admin/ContentForm.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +245,7 @@
       <workItem from="1750525907772" duration="14826000" />
       <workItem from="1751916760678" duration="865000" />
       <workItem from="1751965469794" duration="702000" />
-      <workItem from="1751967221409" duration="36965000" />
+      <workItem from="1751967221409" duration="41813000" />
     </task>
     <servers />
   </component>

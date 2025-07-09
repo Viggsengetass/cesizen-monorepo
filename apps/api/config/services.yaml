@@ -10,9 +10,18 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    # ✅ ContentFixtures (pour qu'elle soit bien exécutée)
+    # ✅ ContentFixtures
     App\DataFixtures\ORM\ContentFixtures:
         tags: ['doctrine.fixture.orm']
+
+    # ✅ ContentDataPersister (décore UserOwnedDataPersister pour injection user)
+    App\DataPersister\ContentDataPersister:
+        decorates: 'App\DataPersister\UserOwnedDataPersister'
+        arguments:
+            $inner: '@App\DataPersister\ContentDataPersister.inner'
+            $security: '@security.helper'
+        autoconfigure: false
+        public: false
 
     # 🎯 DiagnosticDataPersister
     App\DataPersister\DiagnosticDataPersister:
@@ -50,7 +59,7 @@ services:
         autoconfigure: false
         public: false
 
-    # ✅ UserDataPersister (hash mot de passe)
+    # ✅ UserDataPersister
     App\DataPersister\UserDataPersister:
         decorates: 'api_platform.doctrine.orm.state.persist_processor'
         arguments:
@@ -59,7 +68,7 @@ services:
         autoconfigure: false
         public: false
 
-    # ✅ ExerciseUserFilterExtension (filtrage auto par utilisateur connecté)
+    # ✅ Extension pour filtrer par utilisateur connecté
     App\Doctrine\Extension\ExerciseUserFilterExtension:
         tags:
             - 'api_platform.doctrine.orm.query_extension.collection'

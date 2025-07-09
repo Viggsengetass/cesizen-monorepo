@@ -5,6 +5,7 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\GetCollection;
 use App\Repository\ContentRepository;
 use Doctrine\DBAL\Types\Types;
@@ -17,7 +18,8 @@ use App\Entity\User;
 #[ApiResource(
     operations: [
         new Get(),
-        new GetCollection()
+        new GetCollection(),
+        new Post(security: "is_granted('ROLE_ADMIN')", denormalizationContext: ['groups' => ['content:write']])
     ],
     normalizationContext: ['groups' => ['content:read']],
     paginationItemsPerPage: 10
@@ -30,19 +32,19 @@ class Content
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Groups(['content:read'])]
+    #[Groups(['content:read', 'content:write'])]
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[Groups(['content:read'])]
+    #[Groups(['content:read', 'content:write'])]
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
-    #[Groups(['content:read'])]
+    #[Groups(['content:read', 'content:write'])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $type = null;
 
-    #[Groups(['content:read'])]
+    #[Groups(['content:read', 'content:write'])]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $body = null;
 
@@ -54,15 +56,15 @@ class Content
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[Groups(['content:read'])]
-    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['content:read', 'content:write'])]
+    #[ORM\Column(type: 'text', nullable: true)]
     private ?string $coverImage = null;
 
-    #[Groups(['content:read'])]
+    #[Groups(['content:read', 'content:write'])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $videoUrl = null;
 
-    #[Groups(['content:read'])]
+    #[Groups(['content:read', 'content:write'])]
     #[ORM\Column(type: Types::JSON, nullable: true)]
     private ?array $mediaUrls = null;
 
