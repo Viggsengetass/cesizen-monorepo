@@ -9,28 +9,42 @@ import { Button } from "@/components/ui/Button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Select from "@/components/ui/Select";
 import LoadingScreen from "@/components/ui/LoadingScreen";
-import WavyFooter from "@/components/ui/WavyFooter";
 import AnimatedWaves from "@/components/ui/AnimatedWaves";
 
 export default function IndexContentPage() {
     const { token } = useAuth();
     const [data, setData] = useState<any[]>([]);
+    const [filteredData, setFilteredData] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(9);
+    const [selectedType, setSelectedType] = useState<string>("");
 
     useEffect(() => {
         if (!token) return;
 
         fetchContents()
-            .then((res) => setData(res))
+            .then((res) => {
+                setData(res);
+                setFilteredData(res);
+            })
             .catch((err) => setError(err.message))
             .finally(() => setLoading(false));
     }, [token]);
 
-    const totalPages = Math.ceil(data.length / itemsPerPage);
-    const paginatedData = data.slice(
+    useEffect(() => {
+        if (selectedType) {
+            setFilteredData(data.filter((item) => item.type === selectedType));
+        } else {
+            setFilteredData(data);
+        }
+        setCurrentPage(1); // reset pagination on filter
+    }, [selectedType, data]);
+
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+    const paginatedData = filteredData.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
@@ -68,8 +82,20 @@ export default function IndexContentPage() {
                 🌿 Contenus de bien-être
             </h1>
 
-            {/* Sélecteur personnalisé */}
-            <div className="flex justify-center mb-8">
+            {/* Filtres */}
+            <div className="flex flex-wrap justify-center items-center gap-4 mb-8">
+                <Select
+                    value={selectedType}
+                    onChange={(e) => setSelectedType(e.target.value)}
+                >
+                    <option value="">Tous les types</option>
+                    <option value="meditation">Méditation</option>
+                    <option value="respiration">Respiration</option>
+                    <option value="sommeil">Sommeil</option>
+                    <option value="gestion-du-stress">Gestion du stress</option>
+                    <option value="pleine-conscience">Pleine conscience</option>
+                </Select>
+
                 <Select value={itemsPerPage} onChange={handleItemsPerPageChange}>
                     {[9, 18, 27, 36].map((count) => (
                         <option key={count} value={count}>
@@ -79,7 +105,7 @@ export default function IndexContentPage() {
                 </Select>
             </div>
 
-            {data.length === 0 ? (
+            {filteredData.length === 0 ? (
                 <p className="text-center text-gray-600">Aucun contenu disponible.</p>
             ) : (
                 <>
