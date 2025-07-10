@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2d8957d8-4641-4c18-82fa-28ebfd689467" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/babel.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/tailwind.config.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +208,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PhpStorm 2024.3.5\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\Users\\p.antoine\\cesizen-monorepo\\apps\\web\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -243,7 +241,7 @@
       <workItem from="1751916760678" duration="865000" />
       <workItem from="1751965469794" duration="702000" />
       <workItem from="1751967221409" duration="44132000" />
-      <workItem from="1752136860909" duration="714000" />
+      <workItem from="1752136860909" duration="2952000" />
     </task>
     <servers />
   </component>
