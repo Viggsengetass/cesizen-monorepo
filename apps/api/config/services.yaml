@@ -10,7 +10,20 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    # 🎯 DiagnosticDataPersister en tout premier
+    # ✅ ContentFixtures
+    App\DataFixtures\ORM\ContentFixtures:
+        tags: ['doctrine.fixture.orm']
+
+    # ✅ ContentDataPersister (décore UserOwnedDataPersister pour injection user)
+    App\DataPersister\ContentDataPersister:
+        decorates: 'App\DataPersister\UserOwnedDataPersister'
+        arguments:
+            $inner: '@App\DataPersister\ContentDataPersister.inner'
+            $security: '@security.helper'
+        autoconfigure: false
+        public: false
+
+    # 🎯 DiagnosticDataPersister
     App\DataPersister\DiagnosticDataPersister:
         decorates: 'api_platform.doctrine.orm.state.persist_processor'
         arguments:
@@ -19,7 +32,7 @@ services:
         autoconfigure: false
         public: false
 
-    # 🎯 EmotionEntryDataPersister en second
+    # 🎯 EmotionEntryDataPersister
     App\DataPersister\EmotionEntryDataPersister:
         decorates: 'App\DataPersister\DiagnosticDataPersister'
         arguments:
@@ -28,7 +41,7 @@ services:
         autoconfigure: false
         public: false
 
-    # 🎯 UserOwnedDataPersister en dernier (générique)
+    # 🎯 UserOwnedDataPersister
     App\DataPersister\UserOwnedDataPersister:
         decorates: 'App\DataPersister\EmotionEntryDataPersister'
         arguments:
@@ -37,7 +50,7 @@ services:
         autoconfigure: false
         public: false
 
-    # ✅ DiagnosticSubmissionDataPersister avec le bon service de base
+    # ✅ DiagnosticSubmissionDataPersister
     App\DataPersister\DiagnosticSubmissionDataPersister:
         decorates: 'api_platform.doctrine.orm.state.persist_processor'
         arguments:
@@ -45,3 +58,20 @@ services:
             $security: '@security.helper'
         autoconfigure: false
         public: false
+
+    # ✅ UserDataPersister
+    App\DataPersister\UserDataPersister:
+        decorates: 'api_platform.doctrine.orm.state.persist_processor'
+        arguments:
+            $persistProcessor: '@App\DataPersister\UserDataPersister.inner'
+            $passwordHasher: '@security.user_password_hasher'
+        autoconfigure: false
+        public: false
+
+    # ✅ Extension pour filtrer par utilisateur connecté
+    App\Doctrine\Extension\ExerciseUserFilterExtension:
+        tags:
+            - 'api_platform.doctrine.orm.query_extension.collection'
+            - 'api_platform.doctrine.orm.query_extension.item'
+        arguments:
+            $security: '@security.helper'

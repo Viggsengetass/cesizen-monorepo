@@ -23,11 +23,20 @@ services:
     working_dir: /app
     volumes:
       - ./apps/api:/app
+      # ❌ Ne PAS monter .env.local (il écrase les variables d'env Docker)
     ports:
       - "8080:8000"
     environment:
       DATABASE_URL: "pgsql://postgres:postgres@db:5432/app?serverVersion=16&charset=utf8"
+      MAILER_DSN: "smtp://maildev:1025"
     command: ["php", "-S", "0.0.0.0:8000", "-t", "public"]
+
+  maildev:
+    image: maildev/maildev
+    container_name: cesizen_maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"
 
 volumes:
   postgres_data:

@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --cesizen-green: #A8D5BA;
+        --cesizen-green-hover: #92c6a5;
+        --cesizen-skyblue: #A3D2CA;
+        --cesizen-lavender: #D5CFE1;
+        --cesizen-cloud: #F6F9FC;
+        --cesizen-graphite: #2E2E2E;
+        --cesizen-softpink: #FADADD;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --cesizen-cloud: #1a1a1a;
+            --cesizen-graphite: #f0f0f0;
+        }
+    }
+
+    body {
+        background-color: var(--cesizen-cloud);
+        color: var(--cesizen-graphite);
+        font-family: 'Inter', sans-serif;
+    }
+}
+
+@layer components {
+    .btn-primary {
+        background-color: var(--cesizen-green);
+        color: white;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: var(--cesizen-green-hover);
+    }
+
+    .btn-outline {
+        border: 1px solid var(--cesizen-green);
+        color: var(--cesizen-graphite);
+        border-radius: 1rem;
+        padding: 0.5rem 1rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-outline:hover {
+        background-color: rgba(168, 213, 186, 0.1); /* var(--cesizen-green)/10 équivalent */
+    }
+
+    .card {
+        background-color: white;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+}
+
+@layer utilities {
+    .text-graphite {
+        color: var(--cesizen-graphite);
+    }
+
+    .bg-cloud {
+        background-color: var(--cesizen-cloud);
+    }
+}
+
+/* 🎨 Arrière-plan radial pastel */
+.bg-gradient-radial {
+    background: radial-gradient(circle at top left, var(--cesizen-green) 0%, var(--cesizen-lavender) 50%, transparent 90%);
+}
+
+/* 🌬️ Animation douce des bulles */
+@keyframes float {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1);
+    }
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+}
+
+/* 💭 Bulles décoratives animées */
+.bubble {
+    position: absolute;
+    border-radius: 9999px;
+    opacity: 0.2;
+    filter: blur(3rem);
+    background-color: var(--cesizen-green);
+    animation: float 6s ease-in-out infinite;
+}
