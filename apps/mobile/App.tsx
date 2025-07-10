@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// apps/mobile/App.tsx
+import React, { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import * as SplashScreen from 'expo-splash-screen';
+import { useFonts as useInterFonts, Inter_400Regular } from '@expo-google-fonts/inter';
+import { useFonts as useDmSansFonts, DMSans_400Regular } from '@expo-google-fonts/dm-sans';
+
+import TabNavigator from './navigation/TabNavigator';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    const [interLoaded] = useInterFonts({ Inter_400Regular });
+    const [dmLoaded] = useDmSansFonts({ DMSans_400Regular });
+    const fontsLoaded = interLoaded && dmLoaded;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    useEffect(() => {
+        if (fontsLoaded) {
+            SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded]);
+
+    if (!fontsLoaded) return null;
+
+    return (
+        <NavigationContainer>
+            <TabNavigator />
+        </NavigationContainer>
+    );
+}
