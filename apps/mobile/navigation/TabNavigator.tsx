@@ -1,9 +1,11 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import HomeScreen from '../screens/HomeScreen';
-import RespirationNavigator from './RespirationNavigator'; // 💡 navigation stack pour Respiration
 import { View, Text } from 'react-native';
+
+import HomeScreen from '../screens/HomeScreen';
+import RespirationNavigator from './RespirationNavigator';
+import ContentListScreen from '../screens/ContentListScreen';
 import { colors } from '../styles/theme';
 
 const Tab = createBottomTabNavigator();
@@ -66,8 +68,8 @@ export default function TabNavigator() {
         >
             <Tab.Screen name="Accueil" component={HomeScreen} />
             <Tab.Screen name="Respiration" component={RespirationNavigator} />
-            <Tab.Screen name="Émotions" children={() => <Placeholder label="Suivi des émotions" />} />
-            <Tab.Screen name="Fiches" children={() => <Placeholder label="Fiches informatives" />} />
+            <Tab.Screen name="Émotions" component={() => <Placeholder label="Suivi des émotions" />} />
+            <Tab.Screen name="Fiches" component={ContentListScreen} />
         </Tab.Navigator>
     );
 }

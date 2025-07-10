@@ -5,28 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d8957d8-4641-4c18-82fa-28ebfd689467" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/mobile/app/providers/AppLoadingProvider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/components/BreathingPlayer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/components/ui/Button.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/components/ui/Card.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/components/ui/Input.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/components/ui/Label.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/components/ui/Loader.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/components/ui/Modal.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/components/ui/ProgressBar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/components/ui/ScreenWrapper.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/components/ui/Toast.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/data/staticExercises.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/lottie/hamster-run.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/navigation/RespirationNavigator.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/screens/ExerciseListScreen.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/screens/ExercisePlayerScreen.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/screens/LoadingScreen.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/components/ContentCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/data/staticContents.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/screens/ContentListScreen.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/app/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/components/BreathingPlayer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/components/BreathingPlayer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/data/staticExercises.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/data/staticExercises.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/mobile/navigation/TabNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/navigation/TabNavigator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/screens/ExerciseListScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/screens/ExerciseListScreen.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,7 +251,7 @@
       <workItem from="1751916760678" duration="865000" />
       <workItem from="1751965469794" duration="702000" />
       <workItem from="1751967221409" duration="44132000" />
-      <workItem from="1752136860909" duration="24069000" />
+      <workItem from="1752136860909" duration="29929000" />
     </task>
     <servers />
   </component>
