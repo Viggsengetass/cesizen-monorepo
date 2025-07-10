@@ -1,41 +1,122 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
+import { MotiView } from 'moti';
+import { Ionicons, Feather, FontAwesome5 } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import { colors, fonts } from '../styles/theme';
-import { Ionicons, MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons';
+
+const screenWidth = Dimensions.get('window').width;
 
 export default function HomeScreen() {
+    const navigation = useNavigation();
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <Text style={styles.title}>Bienvenue sur CESIZen 🌿</Text>
-            <Text style={styles.subtitle}>
-                Prends un moment pour respirer, te recentrer et explorer ton bien-être.
-            </Text>
-
+            {/* Fond animé optionnel */}
             <Image
-                source={{
-                    uri: 'https://cdn.pixabay.com/photo/2018/03/27/13/50/yoga-3266728_1280.jpg',
-                }}
-                style={styles.illustration}
+                source={{ uri: 'https://www.transparenttextures.com/patterns/white-wall-3.png' }}
+                style={StyleSheet.absoluteFill}
+                resizeMode="repeat"
+            />
+
+            {/* Logo */}
+            <Image
+                source={require('../assets/logo_cesizen.png')}
+                style={styles.logo}
                 resizeMode="contain"
             />
 
-            <View style={styles.buttonsContainer}>
-                <TouchableOpacity style={styles.cardButton}>
-                    <Ionicons name="md-body" size={24} color="#fff" style={styles.icon} />
-                    <Text style={styles.cardText}>Exercices de respiration</Text>
-                </TouchableOpacity>
+            {/* Illustration d'accueil */}
+            <MotiView
+                from={{ opacity: 0, translateY: -30 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                transition={{ delay: 100, type: 'timing', duration: 500 }}
+            >
+                <Image
+                    source={{ uri: 'https://cdn.pixabay.com/photo/2020/12/11/13/40/meditation-5823774_1280.png' }}
+                    style={styles.illustration}
+                />
+            </MotiView>
 
-                <TouchableOpacity style={styles.cardButton}>
-                    <MaterialCommunityIcons name="emoticon-outline" size={24} color="#fff" style={styles.icon} />
-                    <Text style={styles.cardText}>Suivi des émotions</Text>
-                </TouchableOpacity>
+            {/* Titre & sous-titre */}
+            <MotiView
+                from={{ opacity: 0, translateY: 20 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                transition={{ delay: 300, type: 'timing', duration: 500 }}
+            >
+                <Text style={styles.title}>Bienvenue sur CESIZen 🌱</Text>
+                <Text style={styles.subtitle}>
+                    Trouve ton équilibre, explore ta respiration, tes émotions et ton bien-être.
+                </Text>
+            </MotiView>
 
-                <TouchableOpacity style={styles.cardButton}>
-                    <FontAwesome5 name="book-open" size={20} color="#fff" style={styles.icon} />
-                    <Text style={styles.cardText}>Fiches informatives</Text>
-                </TouchableOpacity>
+            {/* Boutons */}
+            <View style={styles.modules}>
+                <AnimatedButton
+                    icon={<Feather name="wind" size={20} color="#fff" />}
+                    label="Exercices de respiration"
+                    onPress={() => navigation.navigate('Breathing')}
+                />
+                <AnimatedButton
+                    icon={<Ionicons name="happy-outline" size={20} color="#fff" />}
+                    label="Suivi des émotions"
+                    onPress={() => navigation.navigate('Emotions')}
+                />
+                <AnimatedButton
+                    icon={<FontAwesome5 name="book-reader" size={18} color="#fff" />}
+                    label="Fiches informatives"
+                    onPress={() => navigation.navigate('InfoSheets')}
+                />
             </View>
+
+            {/* Bulle animée de respiration */}
+            <MotiView
+                from={{ scale: 1 }}
+                animate={{ scale: [1, 1.5, 1] }}
+                transition={{
+                    loop: true,
+                    type: 'timing',
+                    duration: 4000,
+                }}
+                style={styles.breathBubble}
+            />
+
+            {/* Footer citation */}
+            <MotiView
+                from={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1000 }}
+                style={styles.inspiration}
+            >
+                <Text style={styles.inspirationText}>
+                    🌸 “Le calme est le nouveau super-pouvoir.” 🌸
+                </Text>
+            </MotiView>
         </ScrollView>
+    );
+}
+
+function AnimatedButton({
+                            icon,
+                            label,
+                            onPress,
+                        }: {
+    icon: JSX.Element;
+    label: string;
+    onPress: () => void;
+}) {
+    return (
+        <MotiView
+            from={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: 'timing', duration: 400 }}
+            style={styles.buttonWrapper}
+        >
+            <TouchableOpacity style={styles.button} activeOpacity={0.85} onPress={onPress}>
+                {icon}
+                <Text style={styles.buttonText}>{label}</Text>
+            </TouchableOpacity>
+        </MotiView>
     );
 }
 
@@ -44,54 +125,79 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         backgroundColor: colors.cloud,
         alignItems: 'center',
-        justifyContent: 'flex-start',
         paddingVertical: 40,
         paddingHorizontal: 20,
     },
+    logo: {
+        width: 80,
+        height: 80,
+        marginBottom: 12,
+    },
+    illustration: {
+        width: screenWidth * 0.8,
+        height: 200,
+        borderRadius: 16,
+        marginBottom: 30,
+        alignSelf: 'center',
+    },
     title: {
-        fontSize: 28,
+        fontSize: 32,
         fontFamily: fonts.title,
         color: colors.graphite,
-        marginBottom: 10,
         textAlign: 'center',
+        marginBottom: 8,
     },
     subtitle: {
         fontSize: 16,
         fontFamily: fonts.body,
         color: colors.graphite,
-        marginBottom: 20,
         textAlign: 'center',
+        marginBottom: 24,
     },
-    illustration: {
-        width: '90%',
-        height: 200,
-        borderRadius: 16,
-        marginBottom: 30,
-    },
-    buttonsContainer: {
+    modules: {
         width: '100%',
         gap: 16,
+        marginBottom: 30,
     },
-    cardButton: {
+    buttonWrapper: {
+        width: '100%',
+    },
+    button: {
         backgroundColor: colors.sage,
-        paddingVertical: 14,
-        paddingHorizontal: 20,
         borderRadius: 20,
+        paddingVertical: 16,
+        paddingHorizontal: 20,
         flexDirection: 'row',
         alignItems: 'center',
+        gap: 12,
         justifyContent: 'center',
-        elevation: 3,
         shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.1,
-        shadowOffset: { width: 0, height: 2 },
         shadowRadius: 6,
+        elevation: 4,
     },
-    cardText: {
-        fontSize: 16,
+    buttonText: {
         color: '#fff',
+        fontSize: 16,
         fontFamily: fonts.body,
     },
-    icon: {
-        marginRight: 10,
+    breathBubble: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: colors.lavender,
+        marginVertical: 16,
+    },
+    inspiration: {
+        marginTop: 10,
+        paddingHorizontal: 20,
+    },
+    inspirationText: {
+        textAlign: 'center',
+        fontFamily: fonts.body,
+        fontSize: 14,
+        color: colors.graphite,
+        fontStyle: 'italic',
     },
 });

@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d8957d8-4641-4c18-82fa-28ebfd689467" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/mobile/app/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/assets/zen-illustration.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/babel-config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/navigation/TabNavigator.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/screens/HomeScreen.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/styles/theme.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/assets/logo_cesizen.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/navigation/TabNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/navigation/TabNavigator.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/mobile/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/mobile/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/screens/HomeScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/screens/HomeScreen.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +207,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "dev",
-    "last_opened_file_path": "C:/Users/p.antoine/Documents/atelier-bash-deploy",
+    "last_opened_file_path": "C:/Users/p.antoine/cesizen-monorepo/apps/mobile/assets",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -225,6 +218,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\p.antoine\cesizen-monorepo\apps\mobile\assets" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\p.antoine\cesizen-monorepo\apps\mobile\assets" />
       <recent name="C:\Users\p.antoine\cesizen-monorepo\apps\web\public" />
@@ -253,7 +249,7 @@
       <workItem from="1751916760678" duration="865000" />
       <workItem from="1751965469794" duration="702000" />
       <workItem from="1751967221409" duration="44132000" />
-      <workItem from="1752136860909" duration="11778000" />
+      <workItem from="1752136860909" duration="15689000" />
     </task>
     <servers />
   </component>
