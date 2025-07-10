@@ -2,13 +2,12 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import HomeScreen from '../screens/HomeScreen';
-import BreathScreen from '../screens/BreathScreen';
+import RespirationNavigator from './RespirationNavigator'; // 💡 navigation stack pour Respiration
 import { View, Text } from 'react-native';
 import { colors } from '../styles/theme';
 
 const Tab = createBottomTabNavigator();
 
-// Placeholder temporaire pour les autres onglets non développés
 const Placeholder = ({ label }: { label: string }) => (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text style={{ fontSize: 18 }}>{label}</Text>
@@ -66,7 +65,7 @@ export default function TabNavigator() {
             })}
         >
             <Tab.Screen name="Accueil" component={HomeScreen} />
-            <Tab.Screen name="Respiration" component={BreathScreen} />
+            <Tab.Screen name="Respiration" component={RespirationNavigator} />
             <Tab.Screen name="Émotions" children={() => <Placeholder label="Suivi des émotions" />} />
             <Tab.Screen name="Fiches" children={() => <Placeholder label="Fiches informatives" />} />
         </Tab.Navigator>

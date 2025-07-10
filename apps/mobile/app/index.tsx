@@ -1,10 +1,10 @@
-// apps/mobile/app/index.tsx
-import { View, Text } from 'react-native';
+// apps/mobile/app/index.ts
+import React from 'react';
+import { registerRootComponent } from 'expo';
+import AppLoadingProvider from './providers/AppLoadingProvider';
 
-export default function HomeScreen() {
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Bienvenue sur CESIZen mobile 👋</Text>
-        </View>
-    );
+export default function App(): JSX.Element {
+    return <AppLoadingProvider />;
 }
+
+registerRootComponent(App);
