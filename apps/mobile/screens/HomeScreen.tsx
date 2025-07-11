@@ -21,44 +21,37 @@ export default function HomeScreen() {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            {/* Fond animé */}
             <Image
                 source={{ uri: 'https://www.transparenttextures.com/patterns/white-wall-3.png' }}
                 style={StyleSheet.absoluteFill}
                 resizeMode="repeat"
             />
 
-            {/* Header avec Connexion ou Avatar */}
             <View style={styles.header}>
                 <UserHeaderButton />
             </View>
 
-            {/* Logo */}
             <Image
                 source={require('../assets/logo_cesizen.png')}
                 style={styles.logo}
                 resizeMode="contain"
             />
 
-            {/* Illustration */}
             <MotiView
-                from={{ opacity: 0, translateY: -30 }}
+                from={{ opacity: 0, translateY: -20 }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{ delay: 100, type: 'timing', duration: 500 }}
+                transition={{ delay: 100, type: 'timing', duration: 600 }}
             >
                 <Image
-                    source={{
-                        uri: 'https://cdn.pixabay.com/photo/2020/12/11/13/40/meditation-5823774_1280.png',
-                    }}
+                    source={require('../assets/illustration.jpg')}
                     style={styles.illustration}
                 />
             </MotiView>
 
-            {/* Titre */}
             <MotiView
                 from={{ opacity: 0, translateY: 20 }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{ delay: 300, type: 'timing', duration: 500 }}
+                transition={{ delay: 300, type: 'timing', duration: 600 }}
             >
                 <Text style={styles.title}>Bienvenue sur CESIZen 🌱</Text>
                 <Text style={styles.subtitle}>
@@ -66,7 +59,19 @@ export default function HomeScreen() {
                 </Text>
             </MotiView>
 
-            {/* Boutons de navigation */}
+            {/* Ajout d’un résumé du jour */}
+            <View style={styles.todayCard}>
+                <Text style={styles.todayTitle}>Aujourd’hui</Text>
+                <View style={styles.todayInfo}>
+                    <Ionicons name="sunny-outline" size={20} color={colors.sage} />
+                    <Text style={styles.todayText}> Temps : ensoleillé, 22°C</Text>
+                </View>
+                <View style={styles.todayInfo}>
+                    <Feather name="smile" size={20} color={colors.sage} />
+                    <Text style={styles.todayText}> Humeur : Positif 🌞</Text>
+                </View>
+            </View>
+
             <View style={styles.modules}>
                 <AnimatedButton
                     icon={<Feather name="wind" size={20} color="#fff" />}
@@ -83,9 +88,13 @@ export default function HomeScreen() {
                     label="Fiches informatives"
                     onPress={() => navigation.navigate('InfoSheets')}
                 />
+                <AnimatedButton
+                    icon={<FontAwesome5 name="heartbeat" size={18} color="#fff" />}
+                    label="Faire un diagnostic"
+                    onPress={() => navigation.navigate('Diagnostic')}
+                />
             </View>
 
-            {/* Animation bulle respiration */}
             <MotiView
                 from={{ scale: 1 }}
                 animate={{ scale: [1, 1.5, 1] }}
@@ -93,7 +102,6 @@ export default function HomeScreen() {
                 style={styles.breathBubble}
             />
 
-            {/* Citation */}
             <MotiView
                 from={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -119,7 +127,7 @@ function AnimatedButton({
 }) {
     return (
         <MotiView
-            from={{ scale: 0.9, opacity: 0 }}
+            from={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: 'timing', duration: 400 }}
             style={styles.buttonWrapper}
@@ -147,15 +155,15 @@ const styles = StyleSheet.create({
         zIndex: 10,
     },
     logo: {
-        width: 80,
-        height: 80,
+        width: 90,
+        height: 90,
         marginBottom: 12,
     },
     illustration: {
-        width: screenWidth * 0.8,
+        width: screenWidth * 0.85,
         height: 200,
-        borderRadius: 16,
-        marginBottom: 30,
+        borderRadius: 20,
+        marginBottom: 24,
         alignSelf: 'center',
     },
     title: {
@@ -170,7 +178,35 @@ const styles = StyleSheet.create({
         fontFamily: fonts.body,
         color: colors.graphite,
         textAlign: 'center',
-        marginBottom: 24,
+        marginBottom: 28,
+    },
+    todayCard: {
+        backgroundColor: '#fff',
+        borderRadius: 16,
+        padding: 16,
+        width: '100%',
+        marginBottom: 28,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 6,
+        elevation: 3,
+    },
+    todayTitle: {
+        fontSize: 18,
+        fontFamily: fonts.title,
+        color: colors.graphite,
+        marginBottom: 8,
+    },
+    todayInfo: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 6,
+    },
+    todayText: {
+        fontFamily: fonts.body,
+        fontSize: 15,
+        color: colors.graphite,
     },
     modules: {
         width: '100%',
@@ -205,7 +241,7 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 20,
         backgroundColor: colors.lavender,
-        marginVertical: 16,
+        marginVertical: 20,
     },
     inspiration: {
         marginTop: 10,

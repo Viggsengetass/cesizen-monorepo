@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d8957d8-4641-4c18-82fa-28ebfd689467" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/mobile/screens/DashboardScreen.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/assets/illustration.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/components/UserHeaderButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/components/UserHeaderButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/contexts/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/contexts/AuthContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/navigation/TabNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/navigation/TabNavigator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/screens/HomeScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/screens/HomeScreen.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,6 +190,27 @@
       <path value="$PROJECT_DIR$/apps/api/vendor/lcobucci/clock" />
       <path value="$PROJECT_DIR$/apps/api/vendor/theofidry/alice-data-fixtures" />
       <path value="$PROJECT_DIR$/apps/api/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/staabm/side-effects-detector" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/apps/api/vendor/phpunit/php-file-iterator" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -250,7 +268,7 @@
       <workItem from="1751916760678" duration="865000" />
       <workItem from="1751965469794" duration="702000" />
       <workItem from="1751967221409" duration="44132000" />
-      <workItem from="1752136860909" duration="45020000" />
+      <workItem from="1752136860909" duration="47740000" />
     </task>
     <servers />
   </component>
