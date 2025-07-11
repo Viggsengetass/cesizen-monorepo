@@ -6,6 +6,7 @@ import { View, Text } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import RespirationNavigator from './RespirationNavigator';
 import ContentListScreen from '../screens/ContentListScreen';
+import DashboardScreen from '../screens/DashboardScreen';
 import { colors } from '../styles/theme';
 
 const Tab = createBottomTabNavigator();
@@ -54,6 +55,11 @@ export default function TabNavigator() {
                         case 'Fiches':
                             iconName = 'book-open-page-variant';
                             break;
+                        case 'Dashboard':
+                            iconName = 'account-circle-outline';
+                            break;
+                        default:
+                            iconName = 'circle';
                     }
 
                     return (
@@ -70,6 +76,7 @@ export default function TabNavigator() {
             <Tab.Screen name="Respiration" component={RespirationNavigator} />
             <Tab.Screen name="Émotions" component={() => <Placeholder label="Suivi des émotions" />} />
             <Tab.Screen name="Fiches" component={ContentListScreen} />
+            <Tab.Screen name="Dashboard" component={DashboardScreen} />
         </Tab.Navigator>
     );
 }

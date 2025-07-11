@@ -21,7 +21,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             try {
                 const token = await AsyncStorage.getItem('auth_token');
                 if (token) {
+                    console.log('[AuthContext] Token chargé depuis AsyncStorage :', token);
                     setUser(token);
+                } else {
+                    console.log('[AuthContext] Aucun token trouvé dans AsyncStorage');
                 }
             } catch (e) {
                 console.error('[AuthContext] Erreur chargement token :', e);
@@ -34,15 +37,26 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         try {
             await AsyncStorage.setItem('auth_token', token);
             setUser(token);
+            console.log('[AuthContext] Login réussi, token sauvegardé :', token);
         } catch (e) {
             console.error('[AuthContext] Erreur login :', e);
         }
     };
 
     const logout = async () => {
+        console.log('[AuthContext] Début du logout');
         try {
+            const tokenBefore = await AsyncStorage.getItem('auth_token');
+            console.log('[AuthContext] Token actuel avant suppression :', tokenBefore);
+
             await AsyncStorage.removeItem('auth_token');
+            console.log('[AuthContext] Token supprimé de AsyncStorage');
+
             setUser(null);
+            console.log('[AuthContext] State user réinitialisé à null');
+
+            const tokenAfter = await AsyncStorage.getItem('auth_token');
+            console.log('[AuthContext] Token après suppression (doit être null) :', tokenAfter);
         } catch (e) {
             console.error('[AuthContext] Erreur logout :', e);
         }

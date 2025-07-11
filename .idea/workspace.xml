@@ -5,21 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d8957d8-4641-4c18-82fa-28ebfd689467" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/mobile/components/UserHeaderButton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/contexts/AuthContext.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/env.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/hooks/useAuth.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/navigation/AuthNavigator.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/mobile/screens/LoginScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/screens/DashboardScreen.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/.env" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/config/packages/nelmio_cors.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/config/packages/nelmio_cors.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/components/UserHeaderButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/components/UserHeaderButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/contexts/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/contexts/AuthContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/navigation/TabNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/navigation/TabNavigator.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/mobile/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/mobile/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/screens/HomeScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/screens/HomeScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,7 +250,7 @@
       <workItem from="1751916760678" duration="865000" />
       <workItem from="1751965469794" duration="702000" />
       <workItem from="1751967221409" duration="44132000" />
-      <workItem from="1752136860909" duration="42191000" />
+      <workItem from="1752136860909" duration="45020000" />
     </task>
     <servers />
   </component>
