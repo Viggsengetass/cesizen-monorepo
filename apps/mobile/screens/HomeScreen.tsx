@@ -1,9 +1,18 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
+import {
+    View,
+    Text,
+    Image,
+    StyleSheet,
+    TouchableOpacity,
+    ScrollView,
+    Dimensions,
+} from 'react-native';
 import { MotiView } from 'moti';
 import { Ionicons, Feather, FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { colors, fonts } from '../styles/theme';
+import UserHeaderButton from '../components/UserHeaderButton';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -12,12 +21,17 @@ export default function HomeScreen() {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            {/* Fond animé optionnel */}
+            {/* Fond animé */}
             <Image
                 source={{ uri: 'https://www.transparenttextures.com/patterns/white-wall-3.png' }}
                 style={StyleSheet.absoluteFill}
                 resizeMode="repeat"
             />
+
+            {/* Header avec Connexion ou Avatar */}
+            <View style={styles.header}>
+                <UserHeaderButton />
+            </View>
 
             {/* Logo */}
             <Image
@@ -26,19 +40,21 @@ export default function HomeScreen() {
                 resizeMode="contain"
             />
 
-            {/* Illustration d'accueil */}
+            {/* Illustration */}
             <MotiView
                 from={{ opacity: 0, translateY: -30 }}
                 animate={{ opacity: 1, translateY: 0 }}
                 transition={{ delay: 100, type: 'timing', duration: 500 }}
             >
                 <Image
-                    source={{ uri: 'https://cdn.pixabay.com/photo/2020/12/11/13/40/meditation-5823774_1280.png' }}
+                    source={{
+                        uri: 'https://cdn.pixabay.com/photo/2020/12/11/13/40/meditation-5823774_1280.png',
+                    }}
                     style={styles.illustration}
                 />
             </MotiView>
 
-            {/* Titre & sous-titre */}
+            {/* Titre */}
             <MotiView
                 from={{ opacity: 0, translateY: 20 }}
                 animate={{ opacity: 1, translateY: 0 }}
@@ -50,7 +66,7 @@ export default function HomeScreen() {
                 </Text>
             </MotiView>
 
-            {/* Boutons */}
+            {/* Boutons de navigation */}
             <View style={styles.modules}>
                 <AnimatedButton
                     icon={<Feather name="wind" size={20} color="#fff" />}
@@ -69,19 +85,15 @@ export default function HomeScreen() {
                 />
             </View>
 
-            {/* Bulle animée de respiration */}
+            {/* Animation bulle respiration */}
             <MotiView
                 from={{ scale: 1 }}
                 animate={{ scale: [1, 1.5, 1] }}
-                transition={{
-                    loop: true,
-                    type: 'timing',
-                    duration: 4000,
-                }}
+                transition={{ loop: true, type: 'timing', duration: 4000 }}
                 style={styles.breathBubble}
             />
 
-            {/* Footer citation */}
+            {/* Citation */}
             <MotiView
                 from={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -127,6 +139,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 40,
         paddingHorizontal: 20,
+    },
+    header: {
+        position: 'absolute',
+        top: 40,
+        right: 20,
+        zIndex: 10,
     },
     logo: {
         width: 80,
