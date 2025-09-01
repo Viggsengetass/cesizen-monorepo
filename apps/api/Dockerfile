@@ -17,12 +17,17 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /app
 
-# Install Symfony CLI (utile en local)
-RUN curl -sS https://get.symfony.com/cli/installer | bash \
- && mv /root/.symfony*/bin/symfony /usr/local/bin/symfony
+# Copy source code
+COPY . .
+
+# Install PHP dependencies (en production)
+RUN composer install --no-dev --optimize-autoloader
+
+# Copy JWT keys (⚠️ assure-toi qu'ils existent bien dans le repo)
+COPY config/jwt /app/config/jwt
 
 # Expose le port Symfony
 EXPOSE 8000
 
-# Dossier public comme racine pour le serveur PHP
+# Lancer Symfony en prod via le serveur PHP interne
 CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
