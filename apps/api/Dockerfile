@@ -24,5 +24,5 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash \
 # Expose le port Symfony
 EXPOSE 8000
 
-# Dossier public comme racine pour le serveur PHP
+# Dossier public comme racine pour le serveur PHP test
 CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
