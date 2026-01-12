@@ -88,6 +88,7 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^4.1",
         "hautelook/alice-bundle": "^2.15",
+        "phpunit/phpunit": "^11.5",
         "symfony/debug-bundle": "6.4.*"
     }
 }
